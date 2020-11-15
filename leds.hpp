@@ -5,8 +5,6 @@
 #define FASTLED_ALLOW_INTERRUPTS 1
 #include <FastLED.h>
 
-#include "utils.hpp"
-
 #define POSITION_IN_MIDDLE(i, p) (i == (uint16_t)int(p/2))
 #define POSITION_IN_SECOND_HALF(i, p) (i >= (uint16_t)int(p/2))
 #define POSITION_IN_FIRST_HALF(i, p) (i < (uint16_t)int(p/2))
