@@ -2,6 +2,7 @@
 #include <FastLED.h>
 
 #include "ledfx.h"
+#include <effects/bpm.h>
 
 // How many leds in your strip?
 #define NUM_LEDS 10
