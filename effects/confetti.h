@@ -1,7 +1,7 @@
 #ifndef __CONFETTI_H__
 #define __CONFETTI_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
 
 void confetti(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
@@ -11,7 +11,7 @@ void confetti(CRGB* leds, uint16_t num_leds, const struct animation_config* conf
     leds[pos] += CHSV( hue++ + random8(64), 200, 255);
 }
 
-static struct animation_config config = 
+static struct animation_config confetti_config = 
 {
     .id = 0x46,
     .delay = 10,

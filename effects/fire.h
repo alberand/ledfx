@@ -1,7 +1,7 @@
 #ifndef __FIRE_H__
 #define __FIRE_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
 
 void fire(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
@@ -59,7 +59,7 @@ void fire(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 
 }
 
-static struct animation_config config = 
+static struct animation_config fire_config = 
 {
     .id = 0x51,
     .delay = 20,

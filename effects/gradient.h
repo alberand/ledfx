@@ -1,7 +1,7 @@
 #ifndef __GRADIENT_H__
 #define __GRADIENT_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
 
 void gradient(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
@@ -15,7 +15,7 @@ void gradient(CRGB* leds, uint16_t num_leds, const struct animation_config* conf
     }
 }
 
-static struct animation_config config = 
+static struct animation_config gradient_config = 
 {
     .id = 0x42,
     .delay = 10,

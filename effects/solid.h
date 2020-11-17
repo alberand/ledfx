@@ -1,7 +1,7 @@
 #ifndef __SOLID_H__
 #define __SOLID_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
 
 void solid(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
@@ -21,7 +21,7 @@ void solid(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
     }
 }
 
-static struct animation_config config = 
+static struct animation_config solid_config = 
 {
     .id = 0x41,
     .delay = 10,

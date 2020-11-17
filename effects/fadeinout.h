@@ -1,7 +1,7 @@
 #ifndef __FADEINOUT_H__
 #define __FADEINOUT_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
 
 void fadeinout(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
@@ -9,7 +9,9 @@ void fadeinout(CRGB* leds, uint16_t num_leds, const struct animation_config* con
 
     animation_t.iteration++;
     if(animation_t.iteration < 128) {
-        fadeall(leds, num_leds, config);
+        for(uint16_t i = 0; i < num_leds; i++) {
+            leds[i].nscale8(250);
+        }
     } else if(animation_t.iteration < 256) {
         for(uint16_t i = 0; i < num_leds; i++) {
             leds[i].red = color.red * (animation_t.iteration - 127)/127;
@@ -21,7 +23,7 @@ void fadeinout(CRGB* leds, uint16_t num_leds, const struct animation_config* con
     }
 }
 
-static struct animation_config config = 
+static struct animation_config fadeinout_config = 
 {
     .id = 0x4a,
     .delay = 10,

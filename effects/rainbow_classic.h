@@ -1,7 +1,7 @@
 #ifndef __RAINBOW_CLASSIC_H__
 #define __RAINBOW_CLASSIC_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
 
 void rainbow_classic(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
@@ -35,7 +35,7 @@ void rainbow_classic(CRGB* leds, uint16_t num_leds, const struct animation_confi
     }
 }
 
-static struct animation_config config = 
+static struct animation_config rainbow_classic_config = 
 {
     .id = 0x4f,
     .delay = 20,

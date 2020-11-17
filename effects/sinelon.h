@@ -1,7 +1,7 @@
 #ifndef __SINELON_H__
 #define __SINELON_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
 
 void sinelon(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
@@ -11,7 +11,7 @@ void sinelon(CRGB* leds, uint16_t num_leds, const struct animation_config* confi
     leds[pos] += CHSV( hue++, 255, 192);
 }
 
-static struct animation_config config = 
+static struct animation_config sinelon_config = 
 {
     .id = 0x47,
     .delay = 10,

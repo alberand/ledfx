@@ -1,7 +1,10 @@
 #ifndef __COLOR_WIPE_H__
 #define __COLOR_WIPE_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
+
+#define POSITION_IN_SECOND_HALF(i, p) (i >= (uint16_t)int(p/2))
+#define POSITION_IN_FIRST_HALF(i, p) (i < (uint16_t)int(p/2))
 
 void color_wipe(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
@@ -25,7 +28,7 @@ void color_wipe(CRGB* leds, uint16_t num_leds, const struct animation_config* co
     }
 }
 
-static struct animation_config config =
+static struct animation_config color_wipe_config =
 {
     .id = 0x4e,
     .delay = 10,

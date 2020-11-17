@@ -1,7 +1,7 @@
 #ifndef __STROBOSCOPE_H__
 #define __STROBOSCOPE_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
 
 static void drawRainbowDashes(CRGB* leds, uint16_t num_leds,
                               uint8_t startpos, uint16_t lastpos,
@@ -159,7 +159,7 @@ void stroboscope(CRGB* leds, uint16_t num_leds, const struct animation_config* c
 }
 
 
-static struct animation_config config = 
+static struct animation_config stroboscope_config = 
 {
     .id = 0x45,
     .delay = 10,

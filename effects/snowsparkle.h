@@ -1,7 +1,7 @@
 #ifndef __SNOWSPARKLE_H__
 #define __SNOWSPARKLE_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
 
 void snowsparkle(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
@@ -23,7 +23,7 @@ void snowsparkle(CRGB* leds, uint16_t num_leds, const struct animation_config* c
     }
 }
 
-static struct animation_config config = 
+static struct animation_config snowsparkle_config = 
 {
     .id = 0x4c,
     .delay = 10,

@@ -1,7 +1,7 @@
 #ifndef __THEATER_CHASE_H__
 #define __THEATER_CHASE_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
 
 void theater_chase(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
@@ -22,7 +22,7 @@ void theater_chase(CRGB* leds, uint16_t num_leds, const struct animation_config*
     }
 }
 
-static struct animation_config config =
+static struct animation_config theater_chase_config =
 {
     .id = 0x50,
     .delay = 200,

@@ -1,7 +1,7 @@
 #ifndef __TWINKLE_H__
 #define __TWINKLE_H__
 
-#include <ledfx.h>
+#include <ledfx_common.h>
 
 void twinkle(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
@@ -13,11 +13,13 @@ void twinkle(CRGB* leds, uint16_t num_leds, const struct animation_config* confi
         animation_t.iteration = 0;
         leds[random(num_leds)] = config->params[0];
     } else {
-        fadeall(leds, num_leds, config);
+        for(uint16_t i = 0; i < num_leds; i++) {
+            leds[i].nscale8(250);
+        }
     }
 }
 
-static struct animation_config config =
+static struct animation_config twinkle_config =
 {
     .id = 0x4b,
     .delay = 10,
