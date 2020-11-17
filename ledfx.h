@@ -3,11 +3,6 @@
 
 #include <ledfx_common.h>
 
-static struct animation_config* configs[MAX_CONFIGS] = {
-    &bpm_config    
-};
-
-
 void animation_state_reset()
 {
     animation_t.iteration = 0;

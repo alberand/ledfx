@@ -19,6 +19,26 @@
 #include <effects/cylon.h>
 #include <effects/theater_chase.h>
 
-#define MAX_CONFIGS 17
+#define CONFIGS_SIZE 17
+
+static struct animation_config* configs[CONFIGS_SIZE] = {
+    &fire_config,
+    &color_wipe_config,
+    &fadeinout_config,
+    &rainbow_config,
+    &rainbow_classic_config,
+    &bpm_config,
+    &confetti_config,
+    &stroboscope_config,
+    &twinkle_config,
+    &snowsparkle_config,
+    &train_config,
+    &juggle_config,
+    &solid_config,
+    &sinelon_config,
+    &gradient_config,
+    &cylon_config,
+    &theater_chase_config,
+};
 
 #endif // __LEDFX_EFFECTS_H__
