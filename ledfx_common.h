@@ -21,4 +21,6 @@ struct animation_state
 
 static struct animation_state animation_t;
 
+#include <ledfx_effects.h>
+
 #endif // __LEDFX_COMMON_H__

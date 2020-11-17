@@ -2,25 +2,6 @@
 #define __LEDFX_H__
 
 #include <ledfx_common.h>
-#include <effects/bpm.h>
-#include <effects/color_wipe.h>
-#include <effects/confetti.h>
-#include <effects/cylon.h>
-#include <effects/fadeinout.h>
-#include <effects/fire.h>
-#include <effects/gradient.h>
-#include <effects/juggle.h>
-#include <effects/rainbow_classic.h>
-#include <effects/rainbow.h>
-#include <effects/sinelon.h>
-#include <effects/snowsparkle.h>
-#include <effects/solid.h>
-#include <effects/stroboscope.h>
-#include <effects/theater_chase.h>
-#include <effects/train.h>
-#include <effects/twinkle.h>
-
-#define MAX_CONFIGS 1
 
 static struct animation_config* configs[MAX_CONFIGS] = {
     &bpm_config    
