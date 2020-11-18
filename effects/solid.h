@@ -3,17 +3,25 @@
 
 #include <ledfx_common.h>
 
+struct solid_params {
+    uint32_t color;
+    uint16_t offset;
+    uint16_t num;
+};
+
 void solid(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const CRGB color = config->params[0];
+    solid_params* params = (solid_params*)config->params;
+    const CRGB color = params->color;
+    
     uint16_t offset = 0;
-    if(config->params[1] != 0){
-        offset = config->params[1];
+    if(params->offset != 0){
+        offset = params->offset;
     }
 
     uint16_t num = num_leds;
-    if(config->params[2] != 0){
-        num = config->params[2];
+    if(params->num != 0){
+        num = params->num;
     }
 
     for( int i = 0; i < num; ++i) {

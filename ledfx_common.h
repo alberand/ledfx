@@ -11,7 +11,7 @@ struct animation_config
     // Size of the received data in bytes
     uint8_t size;
     // Array for animation parameters
-    uint32_t* params;
+    void* params;
 };
 
 struct animation_state

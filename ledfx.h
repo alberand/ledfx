@@ -25,7 +25,20 @@ const struct animation_config* ledfx_get_config(uint8_t effect_id){
     return NULL;
 }
 
-int ledfx_effect(uint8_t effect_id, CRGB* leds, uint16_t num_leds)
+int ledfx_set_params(uint8_t effect_id, void* params){
+    if(params == NULL){
+        return -1;
+    }
+
+    struct animation_config* config = ledfx_get_config(effect_id);
+    if(config == NULL){
+        return -2;
+    }
+
+    config->params = params;
+}
+
+void ledfx_effect(uint8_t effect_id, CRGB* leds, uint16_t num_leds)
 {
     const struct animation_config* config = ledfx_get_config(effect_id);
     if(config != NULL){
