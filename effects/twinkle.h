@@ -1,7 +1,7 @@
 #ifndef __TWINKLE_H__
 #define __TWINKLE_H__
 
-#include <ledfx_common.h>
+#include <ledfx.h>
 
 struct twinkle_params {
     uint32_t color;

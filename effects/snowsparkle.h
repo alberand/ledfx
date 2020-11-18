@@ -1,7 +1,7 @@
 #ifndef __SNOWSPARKLE_H__
 #define __SNOWSPARKLE_H__
 
-#include <ledfx_common.h>
+#include <ledfx.h>
 
 struct snowsparkle_params {
     uint32_t base_color;

@@ -1,7 +1,7 @@
 #ifndef __SINELON_H__
 #define __SINELON_H__
 
-#include <ledfx_common.h>
+#include <ledfx.h>
 
 void sinelon(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {

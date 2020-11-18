@@ -1,7 +1,7 @@
 #ifndef __FIRE_H__
 #define __FIRE_H__
 
-#include <ledfx_common.h>
+#include <ledfx.h>
 
 void fire(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {

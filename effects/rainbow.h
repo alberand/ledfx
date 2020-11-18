@@ -1,7 +1,7 @@
 #ifndef __RAINBOW_H__
 #define __RAINBOW_H__
 
-#include <ledfx_common.h>
+#include <ledfx.h>
 
 void rainbow(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {

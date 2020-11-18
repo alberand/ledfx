@@ -1,7 +1,7 @@
 #ifndef __COLOR_WIPE_H__
 #define __COLOR_WIPE_H__
 
-#include <ledfx_common.h>
+#include <ledfx.h>
 
 #define POSITION_IN_SECOND_HALF(i, p) (i >= (uint16_t)int(p/2))
 #define POSITION_IN_FIRST_HALF(i, p) (i < (uint16_t)int(p/2))

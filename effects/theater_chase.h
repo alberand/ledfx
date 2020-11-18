@@ -1,7 +1,7 @@
 #ifndef __THEATER_CHASE_H__
 #define __THEATER_CHASE_H__
 
-#include <ledfx_common.h>
+#include <ledfx.h>
 
 struct theater_chase_params {
     uint8_t step;

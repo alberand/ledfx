@@ -1,7 +1,7 @@
 #ifndef __SOLID_H__
 #define __SOLID_H__
 
-#include <ledfx_common.h>
+#include <ledfx.h>
 
 struct solid_params {
     uint32_t color;

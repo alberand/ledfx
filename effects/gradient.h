@@ -1,7 +1,7 @@
 #ifndef __GRADIENT_H__
 #define __GRADIENT_H__
 
-#include <ledfx_common.h>
+#include <ledfx.h>
 
 struct gradient_params {
     uint32_t len;

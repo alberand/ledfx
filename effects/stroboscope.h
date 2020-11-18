@@ -1,7 +1,7 @@
 #ifndef __STROBOSCOPE_H__
 #define __STROBOSCOPE_H__
 
-#include <ledfx_common.h>
+#include <ledfx.h>
 
 static void drawRainbowDashes(CRGB* leds, uint16_t num_leds,
                               uint8_t startpos, uint16_t lastpos,
