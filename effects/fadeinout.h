@@ -3,9 +3,14 @@
 
 #include <ledfx_common.h>
 
+struct fadeinout_params {
+    uint32_t color;
+};
+
 void fadeinout(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const CRGB color = config->params[0];
+    fadeinout_params* params = (fadeinout_params*)config->params;
+    const CRGB color = params->color;
 
     animation_t.iteration++;
     if(animation_t.iteration < 128) {

@@ -3,10 +3,16 @@
 
 #include <ledfx_common.h>
 
+struct snowsparkle_params {
+    uint32_t base_color;
+    uint32_t sparkle_color;
+};
+
 void snowsparkle(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    static const CRGB base_color = config->params[0];
-    static const CRGB sparkle_color = config->params[1];
+    snowsparkle_params* params = (snowsparkle_params*)config->params;
+    static const CRGB base_color = params->base_color;
+    static const CRGB sparkle_color = params->sparkle_color;
 
     if(animation_t.iteration == 130) {
         animation_t.iteration = 0;

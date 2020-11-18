@@ -3,9 +3,14 @@
 
 #include <ledfx_common.h>
 
+struct train_params {
+    uint32_t color;
+};
+
 void train(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const CRGB color = config->params[0];
+    train_params* params = (train_params*)config->params;
+    const CRGB color = params->color;
 
     if(animation_t.iteration >= (num_leds*2)) {
         animation_t.iteration  = 0;

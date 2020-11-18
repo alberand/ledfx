@@ -3,11 +3,18 @@
 
 #include <ledfx_common.h>
 
+struct theater_chase_params {
+    uint8_t step;
+    uint32_t color_on;
+    uint32_t color_off;
+};
+
 void theater_chase(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const uint8_t step = (uint8_t)config->params[0];
-    const CRGB color_on = config->params[1];
-    const CRGB color_off = config->params[2];
+    theater_chase_params* params = (theater_chase_params*)config->params;
+    const uint8_t step = params->step;
+    const CRGB color_on = params->color_on;
+    const CRGB color_off = params->color_off;
 
     if(animation_t.iteration == step) {
         animation_t.iteration = 0;
