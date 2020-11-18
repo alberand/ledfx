@@ -10,16 +10,12 @@
 // Define the array of leds
 CRGB leds[NUM_LEDS];
 
-solid_params params;
-
 void setup() { 
     FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);
 
-    params.color = 0xFF00FF;
-    params.offset = 0;
-    params.num = NUM_LEDS;
-
-    ledfx_set_params(0x41, (void*)&params);
+    ledfx_set_param(0x41, 0, 0xFF00FF);
+    ledfx_set_param(0x41, 1, 0);
+    ledfx_set_param(0x41, 2, NUM_LEDS);
 }
 
 void loop() { 
