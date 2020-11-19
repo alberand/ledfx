@@ -64,8 +64,7 @@ static struct animation_config fire_config =
     .id = 0x51,
     .delay = 20,
     .leds_update = fire,
-    .size = 0,
-    .params = nullptr,
+    .num = 0,
 };
 
 

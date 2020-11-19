@@ -5,7 +5,7 @@
 
 void train(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const CRGB color = config->params[0];
+    const CRGB color = animation_t.params[0];
 
     if(animation_t.iteration >= (num_leds*2)) {
         animation_t.iteration  = 0;
@@ -26,8 +26,7 @@ static struct animation_config train_config =
     .id = 0x4d,
     .delay = 50,
     .leds_update = train,
-    .size = 1,
-    .params = nullptr,
+    .num = 1,
 };
 
 #endif // __TRAIN_H__

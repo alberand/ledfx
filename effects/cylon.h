@@ -24,8 +24,7 @@ static struct animation_config cylon_config =
     .id = 0x43,
     .delay = 20,
     .leds_update = cylon,
-    .size = 0,
-    .params = nullptr,
+    .num = 0,
 };
 
 

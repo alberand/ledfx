@@ -5,8 +5,8 @@
 
 void snowsparkle(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    static const CRGB base_color = config->params[0];
-    static const CRGB sparkle_color = config->params[1];
+    static const CRGB base_color = animation_t.params[0];
+    static const CRGB sparkle_color = animation_t.params[1];
 
     if(animation_t.iteration == 130) {
         animation_t.iteration = 0;
@@ -28,8 +28,7 @@ static struct animation_config snowsparkle_config =
     .id = 0x4c,
     .delay = 10,
     .leds_update = snowsparkle,
-    .size = 2,
-    .params = nullptr,
+    .num = 2,
 };
 
 

@@ -5,7 +5,7 @@
 
 void fadeinout(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const CRGB color = config->params[0];
+    const CRGB color = animation_t.params[0];
 
     animation_t.iteration++;
     if(animation_t.iteration < 128) {
@@ -28,8 +28,7 @@ static struct animation_config fadeinout_config =
     .id = 0x4a,
     .delay = 10,
     .leds_update = fadeinout,
-    .size = 1,
-    .params = nullptr,
+    .num = 1,
 };
 
 

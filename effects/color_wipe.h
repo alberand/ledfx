@@ -8,7 +8,7 @@
 
 void color_wipe(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const CRGB color = config->params[0];
+    const CRGB color = animation_t.params[0];
 
     uint32_t led_idx = 0;
     uint32_t period = num_leds*4;
@@ -33,8 +33,7 @@ static struct animation_config color_wipe_config =
     .id = 0x4e,
     .delay = 10,
     .leds_update = color_wipe,
-    .size = 1,
-    .params = nullptr,
+    .num = 1,
 };
 
 

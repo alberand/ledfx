@@ -16,8 +16,7 @@ static struct animation_config sinelon_config =
     .id = 0x47,
     .delay = 10,
     .leds_update = sinelon,
-    .size = 0,
-    .params = nullptr,
+    .num = 0,
 };
 
 #endif // __SINELON_H__

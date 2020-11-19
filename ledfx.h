@@ -1,6 +1,8 @@
 #ifndef __LEDFX_H__
 #define __LEDFX_H__
 
+#define MAX_PARAMS 20
+
 #define COUNT_OF(x) ((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
 
 struct animation_config
@@ -8,32 +10,26 @@ struct animation_config
     uint8_t id;
     uint16_t delay;
     void (*leds_update)(CRGB*, uint16_t, const struct animation_config*);
-    // Size of the received data in bytes
-    uint8_t size;
-    // Array for animation parameters
-    void* params;
+    // Number of parameters
+    uint8_t num;
 };
 
-struct animation_state
+struct ledfx_state
 {
     uint16_t iteration;
+    // Array for animation parameters
+    uint32_t* params;
 };
 
-static struct animation_state animation_t;
+static struct ledfx_state animation_t;
 
 /* Include auto-generated effects header */
 #include <ledfx_effects.h>
 
-void animation_state_reset()
+void ledfx_state_reset()
 {
     animation_t.iteration = 0;
-}
-
-void fadeall(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
-{
-    for(uint16_t i = 0; i < num_leds; i++) {
-        leds[i].nscale8(250);
-    }
+    memset(animation_t.params, 0, sizeof(uint32_t)*MAX_PARAMS);
 }
 
 const struct animation_config* ledfx_get_config(uint8_t effect_id){
@@ -46,17 +42,12 @@ const struct animation_config* ledfx_get_config(uint8_t effect_id){
     return NULL;
 }
 
-int ledfx_set_params(uint8_t effect_id, void* params){
-    if(params == NULL){
-        return -1;
+int ledfx_set_param(uint8_t index, uint32_t param){
+    if(animation_t.params == nullptr){
+        animation_t.params = malloc(sizeof(uint32_t)*MAX_PARAMS);
     }
 
-    struct animation_config* config = ledfx_get_config(effect_id);
-    if(config == NULL){
-        return -2;
-    }
-
-    config->params = params;
+    animation_t.params[index] = param;
 }
 
 void ledfx_effect(uint8_t effect_id, CRGB* leds, uint16_t num_leds)

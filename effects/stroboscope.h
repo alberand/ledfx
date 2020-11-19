@@ -164,8 +164,7 @@ static struct animation_config stroboscope_config =
     .id = 0x45,
     .delay = 10,
     .leds_update = stroboscope,
-    .size = 0,
-    .params = nullptr,
+    .num = 0,
 };
 
 #endif // __STROBOSCOPE_H__

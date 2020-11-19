@@ -20,8 +20,7 @@ static struct animation_config bpm_config =
     .id = 0x48,
     .delay = 10,
     .leds_update = bpm,
-    .size = 0,
-    .params = NULL,
+    .num = 0,
 };
 
 #endif // __BPM_H__

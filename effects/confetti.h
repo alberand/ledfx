@@ -16,8 +16,7 @@ static struct animation_config confetti_config =
     .id = 0x46,
     .delay = 10,
     .leds_update = confetti,
-    .size = 0,
-    .params = nullptr,
+    .num = 0,
 };
 
 #endif // __CONFETTI_H__

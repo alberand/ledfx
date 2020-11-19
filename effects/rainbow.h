@@ -49,8 +49,7 @@ static struct animation_config rainbow_config =
     .id = 0x44,
     .delay = 10,
     .leds_update = rainbow,
-    .size = 0,
-    .params = nullptr,
+    .num = 0,
 };
 
 

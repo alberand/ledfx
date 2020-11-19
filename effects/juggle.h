@@ -18,8 +18,7 @@ static struct animation_config juggle_config =
     .id = 0x49,
     .delay = 10,
     .leds_update = juggle,
-    .size = 0,
-    .params = nullptr,
+    .num = 0,
 };
 
 
