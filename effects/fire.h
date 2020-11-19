@@ -62,7 +62,6 @@ void fire(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 static struct animation_config fire_config = 
 {
     .id = 0x51,
-    .delay = 20,
     .leds_update = fire,
     .num = 0,
 };

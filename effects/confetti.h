@@ -14,7 +14,6 @@ void confetti(CRGB* leds, uint16_t num_leds, const struct animation_config* conf
 static struct animation_config confetti_config = 
 {
     .id = 0x46,
-    .delay = 10,
     .leds_update = confetti,
     .num = 0,
 };

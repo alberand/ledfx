@@ -26,7 +26,6 @@ void snowsparkle(CRGB* leds, uint16_t num_leds, const struct animation_config* c
 static struct animation_config snowsparkle_config = 
 {
     .id = 0x4c,
-    .delay = 10,
     .leds_update = snowsparkle,
     .num = 2,
 };

@@ -18,7 +18,6 @@ void gradient(CRGB* leds, uint16_t num_leds, const struct animation_config* conf
 static struct animation_config gradient_config = 
 {
     .id = 0x42,
-    .delay = 10,
     .leds_update = gradient,
     .num = 20,
 };

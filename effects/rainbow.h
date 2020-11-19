@@ -47,7 +47,6 @@ void rainbow(CRGB* leds, uint16_t num_leds, const struct animation_config* confi
 static struct animation_config rainbow_config = 
 {
     .id = 0x44,
-    .delay = 10,
     .leds_update = rainbow,
     .num = 0,
 };

@@ -8,7 +8,6 @@
 struct animation_config
 {
     uint8_t id;
-    uint16_t delay;
     void (*leds_update)(CRGB*, uint16_t, const struct animation_config*);
     // Number of parameters
     uint8_t num;

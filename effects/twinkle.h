@@ -22,7 +22,6 @@ void twinkle(CRGB* leds, uint16_t num_leds, const struct animation_config* confi
 static struct animation_config twinkle_config =
 {
     .id = 0x4b,
-    .delay = 10,
     .leds_update = twinkle,
     .num = 1,
 };

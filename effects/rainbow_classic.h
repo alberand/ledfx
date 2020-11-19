@@ -38,7 +38,6 @@ void rainbow_classic(CRGB* leds, uint16_t num_leds, const struct animation_confi
 static struct animation_config rainbow_classic_config = 
 {
     .id = 0x4f,
-    .delay = 20,
     .leds_update = rainbow_classic,
     .num = 0,
 };

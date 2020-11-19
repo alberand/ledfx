@@ -22,7 +22,6 @@ void cylon(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 static struct animation_config cylon_config = 
 {
     .id = 0x43,
-    .delay = 20,
     .leds_update = cylon,
     .num = 0,
 };

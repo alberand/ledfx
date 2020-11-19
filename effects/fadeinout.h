@@ -26,7 +26,6 @@ void fadeinout(CRGB* leds, uint16_t num_leds, const struct animation_config* con
 static struct animation_config fadeinout_config = 
 {
     .id = 0x4a,
-    .delay = 10,
     .leds_update = fadeinout,
     .num = 1,
 };

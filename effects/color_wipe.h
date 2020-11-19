@@ -31,7 +31,6 @@ void color_wipe(CRGB* leds, uint16_t num_leds, const struct animation_config* co
 static struct animation_config color_wipe_config =
 {
     .id = 0x4e,
-    .delay = 10,
     .leds_update = color_wipe,
     .num = 1,
 };

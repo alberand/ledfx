@@ -25,7 +25,6 @@ void theater_chase(CRGB* leds, uint16_t num_leds, const struct animation_config*
 static struct animation_config theater_chase_config =
 {
     .id = 0x50,
-    .delay = 200,
     .leds_update = theater_chase,
     .num = 3,
 };

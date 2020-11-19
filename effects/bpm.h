@@ -18,7 +18,6 @@ void bpm(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 static struct animation_config bpm_config =
 {
     .id = 0x48,
-    .delay = 10,
     .leds_update = bpm,
     .num = 0,
 };

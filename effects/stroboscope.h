@@ -162,7 +162,6 @@ void stroboscope(CRGB* leds, uint16_t num_leds, const struct animation_config* c
 static struct animation_config stroboscope_config = 
 {
     .id = 0x45,
-    .delay = 10,
     .leds_update = stroboscope,
     .num = 0,
 };

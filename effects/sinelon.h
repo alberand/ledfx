@@ -14,7 +14,6 @@ void sinelon(CRGB* leds, uint16_t num_leds, const struct animation_config* confi
 static struct animation_config sinelon_config = 
 {
     .id = 0x47,
-    .delay = 10,
     .leds_update = sinelon,
     .num = 0,
 };

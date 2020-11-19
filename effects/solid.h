@@ -25,7 +25,6 @@ void solid(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 static struct animation_config solid_config = 
 {
     .id = 0x41,
-    .delay = 10,
     .leds_update = solid,
     .num = 3,
 };

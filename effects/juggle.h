@@ -16,7 +16,6 @@ void juggle(CRGB* leds, uint16_t num_leds, const struct animation_config* config
 static struct animation_config juggle_config = 
 {
     .id = 0x49,
-    .delay = 10,
     .leds_update = juggle,
     .num = 0,
 };

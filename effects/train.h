@@ -24,7 +24,6 @@ void train(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 static struct animation_config train_config =
 {
     .id = 0x4d,
-    .delay = 50,
     .leds_update = train,
     .num = 1,
 };
