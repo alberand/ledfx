@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void bpm(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
+void bpm(RGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     static uint16_t hue = 0;
     uint8_t BeatsPerMinute = 62;

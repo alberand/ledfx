@@ -5,10 +5,16 @@
 
 #define COUNT_OF(x) ((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
 
+typedef struct {
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
+} ledfx_RGB;
+
 struct animation_config
 {
     uint8_t id;
-    void (*leds_update)(CRGB*, uint16_t, const struct animation_config*);
+    void (*leds_update)(ledfx_RGB*, uint16_t, const struct animation_config*);
     // Number of parameters
     uint8_t num;
 };
@@ -21,6 +27,33 @@ struct ledfx_state
 };
 
 static struct ledfx_state animation_t;
+
+const ledfx_RGB ledfx_color(uint32_t color)
+{
+    const ledfx_RGB c = {
+        .r = (color >> 16) & 0xFF,
+        .g = (color >> 8) & 0xFF,
+        .b = (color >> 0) & 0xFF,
+    };
+
+    return c;
+}
+
+uint32_t ledfx_color(ledfx_RGB color)
+{
+    return (color.r << 16) | (color.g << 8) | (color.b << 0);
+}
+
+const ledfx_RGB ledfx_color(uint8_t r, uint8_t g, uint8_t b)
+{
+    const ledfx_RGB c = {
+        .r = r,
+        .g = g,
+        .b = b,
+    };
+
+    return c;
+}
 
 /* Include auto-generated effects header */
 #include <ledfx_effects.h>
@@ -49,7 +82,7 @@ int ledfx_set_param(uint8_t index, uint32_t param){
     animation_t.params[index] = param;
 }
 
-void ledfx_effect(uint8_t effect_id, CRGB* leds, uint16_t num_leds)
+void ledfx_effect(uint8_t effect_id, ledfx_RGB* leds, uint16_t num_leds)
 {
     const struct animation_config* config = ledfx_get_config(effect_id);
     if(config != NULL){

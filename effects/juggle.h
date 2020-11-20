@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void juggle(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
+void juggle(RGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     fadeToBlackBy( leds, num_leds, 20);
     byte dothue = 0;

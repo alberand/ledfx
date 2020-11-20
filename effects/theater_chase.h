@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void theater_chase(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
+void theater_chase(RGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     const uint8_t step = (uint8_t)animation_t.params[0];
     const CRGB color_on = animation_t.params[1];

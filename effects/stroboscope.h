@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-static void drawRainbowDashes(CRGB* leds, uint16_t num_leds,
+static void drawRainbowDashes(RGB* leds, uint16_t num_leds,
                               uint8_t startpos, uint16_t lastpos,
                               uint8_t period, uint8_t width,
                               uint8_t huestart, uint8_t huedelta,
@@ -27,7 +27,7 @@ static void drawRainbowDashes(CRGB* leds, uint16_t num_leds,
     }
 }
 
-void stroboscopeWorker(CRGB* leds, uint16_t num_leds,
+void stroboscopeWorker(RGB* leds, uint16_t num_leds,
                        uint8_t dashperiod,
                        uint8_t dashwidth,
                        int8_t  dashmotionspeed,
@@ -77,7 +77,7 @@ void stroboscopeWorker(CRGB* leds, uint16_t num_leds,
                        kSaturation, kValue);
 }
 
-void stroboscope(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
+void stroboscope(RGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     // First, we black out all the LEDs
     fill_solid( leds, num_leds, CRGB::Black);

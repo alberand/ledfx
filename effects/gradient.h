@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void gradient(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
+void gradient(ledfx_RGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     uint16_t start = 0;
     uint16_t len = int(num_leds/(animation_t.params[0] - 1));

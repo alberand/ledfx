@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void train(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
+void train(RGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     const CRGB color = animation_t.params[0];
 

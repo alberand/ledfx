@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void rainbow_classic(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
+void rainbow_classic(ledfx_RGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     uint16_t i;
     static byte c[3];
@@ -31,7 +31,7 @@ void rainbow_classic(CRGB* leds, uint16_t num_leds, const struct animation_confi
             c[2]=255 - pos * 3;
         }
 
-        leds[i] = CRGB(c[0], c[1], c[2]);
+        leds[i] = ledfx_color(c[0], c[1], c[2]);
     }
 }
 
