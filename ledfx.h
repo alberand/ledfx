@@ -56,6 +56,7 @@ const ledfx_RGB ledfx_color(uint8_t r, uint8_t g, uint8_t b)
 }
 
 /* Include auto-generated effects header */
+#include <lib8tion/lib8tion.h>
 #include <ledfx_effects.h>
 
 void ledfx_state_reset()
