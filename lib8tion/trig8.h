@@ -15,9 +15,9 @@
 ///@{
 
 #if defined(__AVR__)
-#define sin16 sin16_avr
+#define sin16 l8t_sin16_avr
 #else
-#define sin16 sin16_C
+#define sin16 l8t_sin16_C
 #endif
 
 /// Fast 16-bit approximation of sin(x). This approximation never varies more than
@@ -27,7 +27,7 @@
 ///
 /// @param theta input angle from 0-65535
 /// @returns sin of theta, value between -32767 to 32767.
-LIB8STATIC int16_t sin16_avr( uint16_t theta )
+LIB8STATIC int16_t l8t_sin16_avr( uint16_t theta )
 {
     static const uint8_t data[] =
     { 0,         0,         49, 0, 6393%256,   6393/256, 48, 0,
@@ -85,7 +85,7 @@ LIB8STATIC int16_t sin16_avr( uint16_t theta )
 ///
 /// @param theta input angle from 0-65535
 /// @returns sin of theta, value between -32767 to 32767.
-LIB8STATIC int16_t sin16_C( uint16_t theta )
+LIB8STATIC int16_t l8t_sin16_C( uint16_t theta )
 {
     static const uint16_t base[] =
     { 0, 6393, 12539, 18204, 23170, 27245, 30273, 32137 };
@@ -117,7 +117,7 @@ LIB8STATIC int16_t sin16_C( uint16_t theta )
 ///
 /// @param theta input angle from 0-65535
 /// @returns sin of theta, value between -32767 to 32767.
-LIB8STATIC int16_t cos16( uint16_t theta)
+LIB8STATIC int16_t l8t_cos16( uint16_t theta)
 {
     return sin16( theta + 16384);
 }
@@ -141,9 +141,9 @@ LIB8STATIC int16_t cos16( uint16_t theta)
 //        20X faster than floating point sin(x) and cos(x)
 
 #if defined(__AVR__) && !defined(LIB8_ATTINY)
-#define sin8 sin8_avr
+#define sin8 l8t_sin8_avr
 #else
-#define sin8 sin8_C
+#define sin8 l8t_sin8_C
 #endif
 
 
@@ -156,7 +156,7 @@ const uint8_t b_m16_interleave[] = { 0, 49, 49, 41, 90, 27, 117, 10 };
 ///
 /// @param theta input angle from 0-255
 /// @returns sin of theta, value between 0 and 255
-LIB8STATIC uint8_t  sin8_avr( uint8_t theta)
+LIB8STATIC uint8_t  l8t_sin8_avr( uint8_t theta)
 {
     uint8_t offset = theta;
 
@@ -214,7 +214,7 @@ LIB8STATIC uint8_t  sin8_avr( uint8_t theta)
 ///
 /// @param theta input angle from 0-255
 /// @returns sin of theta, value between 0 and 255
-LIB8STATIC uint8_t sin8_C( uint8_t theta)
+LIB8STATIC uint8_t l8t_sin8_C( uint8_t theta)
 {
     uint8_t offset = theta;
     if( theta & 0x40 ) {
@@ -250,9 +250,9 @@ LIB8STATIC uint8_t sin8_C( uint8_t theta)
 ///
 /// @param theta input angle from 0-255
 /// @returns sin of theta, value between 0 and 255
-LIB8STATIC uint8_t cos8( uint8_t theta)
+LIB8STATIC uint8_t l8t_cos8( uint8_t theta)
 {
-    return sin8( theta + 64);
+    return l8t_sin8( theta + 64);
 }
 
 ///@}

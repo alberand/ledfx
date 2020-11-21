@@ -22,7 +22,7 @@
 extern uint16_t rand16seed;// = RAND16_SEED;
 
 /// Generate an 8-bit random number
-LIB8STATIC uint8_t random8()
+LIB8STATIC uint8_t l8t_random8()
 {
     rand16seed = APPLY_FASTLED_RAND16_2053(rand16seed) + FASTLED_RAND16_13849;
     // return the sum of the high and low bytes, for better
@@ -32,7 +32,7 @@ LIB8STATIC uint8_t random8()
 }
 
 /// Generate a 16 bit random number
-LIB8STATIC uint16_t random16()
+LIB8STATIC uint16_t l8t_random16()
 {
     rand16seed = APPLY_FASTLED_RAND16_2053(rand16seed) + FASTLED_RAND16_13849;
     return rand16seed;
@@ -40,9 +40,9 @@ LIB8STATIC uint16_t random16()
 
 /// Generate an 8-bit random number between 0 and lim
 /// @param lim the upper bound for the result
-LIB8STATIC uint8_t random8(uint8_t lim)
+LIB8STATIC uint8_t l8t_random8(uint8_t lim)
 {
-    uint8_t r = random8();
+    uint8_t r = l8t_random8();
     r = (r*lim) >> 8;
     return r;
 }
@@ -50,18 +50,18 @@ LIB8STATIC uint8_t random8(uint8_t lim)
 /// Generate an 8-bit random number in the given range
 /// @param min the lower bound for the random number
 /// @param lim the upper bound for the random number
-LIB8STATIC uint8_t random8(uint8_t min, uint8_t lim)
+LIB8STATIC uint8_t l8t_random8(uint8_t min, uint8_t lim)
 {
     uint8_t delta = lim - min;
-    uint8_t r = random8(delta) + min;
+    uint8_t r = l8t_random8(delta) + min;
     return r;
 }
 
 /// Generate an 16-bit random number between 0 and lim
 /// @param lim the upper bound for the result
-LIB8STATIC uint16_t random16( uint16_t lim)
+LIB8STATIC uint16_t l8t_random16( uint16_t lim)
 {
-    uint16_t r = random16();
+    uint16_t r = l8t_random16();
     uint32_t p = (uint32_t)lim * (uint32_t)r;
     r = p >> 16;
     return r;
@@ -70,27 +70,27 @@ LIB8STATIC uint16_t random16( uint16_t lim)
 /// Generate an 16-bit random number in the given range
 /// @param min the lower bound for the random number
 /// @param lim the upper bound for the random number
-LIB8STATIC uint16_t random16( uint16_t min, uint16_t lim)
+LIB8STATIC uint16_t l8t_random16( uint16_t min, uint16_t lim)
 {
     uint16_t delta = lim - min;
-    uint16_t r = random16( delta) + min;
+    uint16_t r = l8t_random16( delta) + min;
     return r;
 }
 
 /// Set the 16-bit seed used for the random number generator
-LIB8STATIC void random16_set_seed( uint16_t seed)
+LIB8STATIC void l8t_random16_set_seed( uint16_t seed)
 {
     rand16seed = seed;
 }
 
 /// Get the current seed value for the random number generator
-LIB8STATIC uint16_t random16_get_seed()
+LIB8STATIC uint16_t l8t_random16_get_seed()
 {
     return rand16seed;
 }
 
 /// Add entropy into the random number generator
-LIB8STATIC void random16_add_entropy( uint16_t entropy)
+LIB8STATIC void l8t_random16_add_entropy( uint16_t entropy)
 {
     rand16seed += entropy;
 }

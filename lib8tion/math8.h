@@ -20,7 +20,7 @@
 /// @param i - first byte to add
 /// @param j - second byte to add
 /// @returns the sum of i & j, capped at 0xFF
-LIB8STATIC_ALWAYS_INLINE uint8_t qadd8( uint8_t i, uint8_t j)
+LIB8STATIC_ALWAYS_INLINE uint8_t l8t_qadd8( uint8_t i, uint8_t j)
 {
 #if QADD8_C == 1
     unsigned int t = i + j;
@@ -54,7 +54,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t qadd8( uint8_t i, uint8_t j)
 /// @param i - first byte to add
 /// @param j - second byte to add
 /// @returns the sum of i & j, capped at 0xFF
-LIB8STATIC_ALWAYS_INLINE int8_t qadd7( int8_t i, int8_t j)
+LIB8STATIC_ALWAYS_INLINE int8_t l8t_qadd7( int8_t i, int8_t j)
 {
 #if QADD7_C == 1
     int16_t t = i + j;
@@ -86,7 +86,7 @@ LIB8STATIC_ALWAYS_INLINE int8_t qadd7( int8_t i, int8_t j)
 
 /// subtract one byte from another, saturating at 0x00
 /// @returns i - j with a floor of 0
-LIB8STATIC_ALWAYS_INLINE uint8_t qsub8( uint8_t i, uint8_t j)
+LIB8STATIC_ALWAYS_INLINE uint8_t l8t_qsub8( uint8_t i, uint8_t j)
 {
 #if QSUB8_C == 1
     int t = i - j;
@@ -115,7 +115,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t qsub8( uint8_t i, uint8_t j)
 }
 
 /// add one byte to another, with one byte result
-LIB8STATIC_ALWAYS_INLINE uint8_t add8( uint8_t i, uint8_t j)
+LIB8STATIC_ALWAYS_INLINE uint8_t l8t_add8( uint8_t i, uint8_t j)
 {
 #if ADD8_C == 1
     int t = i + j;
@@ -130,7 +130,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t add8( uint8_t i, uint8_t j)
 }
 
 /// add one byte to another, with one byte result
-LIB8STATIC_ALWAYS_INLINE uint16_t add8to16( uint8_t i, uint16_t j)
+LIB8STATIC_ALWAYS_INLINE uint16_t l8t_add8to16( uint8_t i, uint16_t j)
 {
 #if ADD8_C == 1
     uint16_t t = i + j;
@@ -151,7 +151,7 @@ LIB8STATIC_ALWAYS_INLINE uint16_t add8to16( uint8_t i, uint16_t j)
 
 
 /// subtract one byte from another, 8-bit result
-LIB8STATIC_ALWAYS_INLINE uint8_t sub8( uint8_t i, uint8_t j)
+LIB8STATIC_ALWAYS_INLINE uint8_t l8t_sub8( uint8_t i, uint8_t j)
 {
 #if SUB8_C == 1
     int t = i - j;
@@ -168,7 +168,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t sub8( uint8_t i, uint8_t j)
 /// Calculate an integer average of two unsigned
 ///       8-bit integer values (uint8_t).
 ///       Fractional results are rounded down, e.g. avg8(20,41) = 30
-LIB8STATIC_ALWAYS_INLINE uint8_t avg8( uint8_t i, uint8_t j)
+LIB8STATIC_ALWAYS_INLINE uint8_t l8t_avg8( uint8_t i, uint8_t j)
 {
 #if AVG8_C == 1
     return (i + j) >> 1;
@@ -190,7 +190,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t avg8( uint8_t i, uint8_t j)
 /// Calculate an integer average of two unsigned
 ///       16-bit integer values (uint16_t).
 ///       Fractional results are rounded down, e.g. avg16(20,41) = 30
-LIB8STATIC_ALWAYS_INLINE uint16_t avg16( uint16_t i, uint16_t j)
+LIB8STATIC_ALWAYS_INLINE uint16_t l8t_avg16( uint16_t i, uint16_t j)
 {
 #if AVG16_C == 1
     return (uint32_t)((uint32_t)(i) + (uint32_t)(j)) >> 1;
@@ -218,7 +218,7 @@ LIB8STATIC_ALWAYS_INLINE uint16_t avg16( uint16_t i, uint16_t j)
 ///       integers (int8_t)
 ///       If the first argument is even, result is rounded down.
 ///       If the first argument is odd, result is result up.
-LIB8STATIC_ALWAYS_INLINE int8_t avg7( int8_t i, int8_t j)
+LIB8STATIC_ALWAYS_INLINE int8_t l8t_avg7( int8_t i, int8_t j)
 {
 #if AVG7_C == 1
     return ((i + j) >> 1) + (i & 0x1);
@@ -240,7 +240,7 @@ LIB8STATIC_ALWAYS_INLINE int8_t avg7( int8_t i, int8_t j)
 ///       integers (int16_t)
 ///       If the first argument is even, result is rounded down.
 ///       If the first argument is odd, result is result up.
-LIB8STATIC_ALWAYS_INLINE int16_t avg15( int16_t i, int16_t j)
+LIB8STATIC_ALWAYS_INLINE int16_t l8t_avg15( int16_t i, int16_t j)
 {
 #if AVG15_C == 1
     return ((int32_t)((int32_t)(i) + (int32_t)(j)) >> 1) + (i & 0x1);
@@ -273,7 +273,7 @@ LIB8STATIC_ALWAYS_INLINE int16_t avg15( int16_t i, int16_t j)
 ///       the loop has to execute multiple times.  However,
 ///       even in that case, the loop is only two
 ///       instructions long on AVR, i.e., quick.
-LIB8STATIC_ALWAYS_INLINE uint8_t mod8( uint8_t a, uint8_t m)
+LIB8STATIC_ALWAYS_INLINE uint8_t l8t_mod8( uint8_t a, uint8_t m)
 {
 #if defined(__AVR__)
     asm volatile (
@@ -300,7 +300,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t mod8( uint8_t a, uint8_t m)
 ///          to the next one and wraps around if needed:
 ///            mode = addmod8( mode, 1, 7);
 ///LIB8STATIC_ALWAYS_INLINESee 'mod8' for notes on performance.
-LIB8STATIC uint8_t addmod8( uint8_t a, uint8_t b, uint8_t m)
+LIB8STATIC uint8_t l8t_addmod8( uint8_t a, uint8_t b, uint8_t m)
 {
 #if defined(__AVR__)
     asm volatile (
@@ -329,7 +329,7 @@ LIB8STATIC uint8_t addmod8( uint8_t a, uint8_t b, uint8_t m)
 ///          to the next one and wraps around if needed:
 ///            mode = addmod8( mode, 1, 7);
 ///LIB8STATIC_ALWAYS_INLINESee 'mod8' for notes on performance.
-LIB8STATIC uint8_t submod8( uint8_t a, uint8_t b, uint8_t m)
+LIB8STATIC uint8_t l8t_submod8( uint8_t a, uint8_t b, uint8_t m)
 {
 #if defined(__AVR__)
     asm volatile (
@@ -348,7 +348,7 @@ LIB8STATIC uint8_t submod8( uint8_t a, uint8_t b, uint8_t m)
 }
 
 /// 8x8 bit multiplication, with 8 bit result
-LIB8STATIC_ALWAYS_INLINE uint8_t mul8( uint8_t i, uint8_t j)
+LIB8STATIC_ALWAYS_INLINE uint8_t l8t_mul8( uint8_t i, uint8_t j)
 {
 #if MUL8_C == 1
     return ((int)i * (int)(j) ) & 0xFF;
@@ -373,7 +373,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t mul8( uint8_t i, uint8_t j)
 
 /// saturating 8x8 bit multiplication, with 8 bit result
 /// @returns the product of i * j, capping at 0xFF
-LIB8STATIC_ALWAYS_INLINE uint8_t qmul8( uint8_t i, uint8_t j)
+LIB8STATIC_ALWAYS_INLINE uint8_t l8t_qmul8( uint8_t i, uint8_t j)
 {
 #if QMUL8_C == 1
     int p = ((int)i * (int)(j) );
@@ -407,7 +407,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t qmul8( uint8_t i, uint8_t j)
 
 
 /// take abs() of a signed 8-bit uint8_t
-LIB8STATIC_ALWAYS_INLINE int8_t abs8( int8_t i)
+LIB8STATIC_ALWAYS_INLINE int8_t l8t_abs8( int8_t i)
 {
 #if ABS8_C == 1
     if( i < 0) i = -i;
@@ -431,7 +431,7 @@ LIB8STATIC_ALWAYS_INLINE int8_t abs8( int8_t i)
 ///         square root for 16-bit integers
 ///         About three times faster and five times smaller
 ///         than Arduino's general sqrt on AVR.
-LIB8STATIC uint8_t sqrt16(uint16_t x)
+LIB8STATIC uint8_t l8t_sqrt16(uint16_t x)
 {
     if( x <= 1) {
         return x;
@@ -467,7 +467,7 @@ LIB8STATIC uint8_t sqrt16(uint16_t x)
 /// @param amountOfB - the proportion (0-255) of b to blend
 /// @returns a byte value between a and b, inclusive
 #if (FASTLED_BLEND_FIXED == 1)
-LIB8STATIC uint8_t blend8( uint8_t a, uint8_t b, uint8_t amountOfB)
+LIB8STATIC uint8_t l8t_blend8( uint8_t a, uint8_t b, uint8_t amountOfB)
 {
 #if BLEND8_C == 1
     uint16_t partial;
@@ -538,16 +538,16 @@ LIB8STATIC uint8_t blend8( uint8_t a, uint8_t b, uint8_t amountOfB)
 }
 
 #else
-LIB8STATIC uint8_t blend8( uint8_t a, uint8_t b, uint8_t amountOfB)
+LIB8STATIC uint8_t l8t_blend8( uint8_t a, uint8_t b, uint8_t amountOfB)
 {
     // This version loses precision in the integer math
     // and can actually return results outside of the range
     // from a to b.  Its use is not recommended.
     uint8_t result;
     uint8_t amountOfA = 255 - amountOfB;
-    result = scale8_LEAVING_R1_DIRTY( a, amountOfA)
-           + scale8_LEAVING_R1_DIRTY( b, amountOfB);
-    cleanup_R1();
+    result = l8t_scale8_LEAVING_R1_DIRTY( a, amountOfA)
+           + l8t_scale8_LEAVING_R1_DIRTY( b, amountOfB);
+    l8t_cleanup_R1();
     return result;
 }
 #endif
