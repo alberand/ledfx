@@ -670,7 +670,7 @@ LIB8STATIC uint8_t l8t_dim8_video( uint8_t x)
 LIB8STATIC uint8_t l8t_dim8_lin( uint8_t x )
 {
     if( x & 0x80 ) {
-        x = scale8( x, x);
+        x = l8t_scale8( x, x);
     } else {
         x += 1;
         x /= 2;

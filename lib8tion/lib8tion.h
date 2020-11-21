@@ -395,7 +395,7 @@ typedef union {
         uint32_t mant_hi16_exp_lo1 : 16;
         uint32_t sb_exphi7 : 8;
     };
-} IEEE754binary32_t;
+} l8t_IEEE754binary32_t;
 
 #include "math8.h"
 #include "scale8.h"
@@ -509,11 +509,11 @@ LIB8STATIC uint16_t l8t_lerp16by8( uint16_t a, uint16_t b, l8t_fract8 frac)
     uint16_t result;
     if( b > a) {
         uint16_t delta = b - a;
-        uint16_t scaled = scale16by8( delta, frac);
+        uint16_t scaled = l8t_scale16by8( delta, frac);
         result = a + scaled;
     } else {
         uint16_t delta = a - b;
-        uint16_t scaled = scale16by8( delta, frac);
+        uint16_t scaled = l8t_scale16by8( delta, frac);
         result = a - scaled;
     }
     return result;
@@ -638,7 +638,7 @@ LIB8STATIC uint16_t l8t_ease16InOutQuad( uint16_t i)
     if( j & 0x8000 ) {
         j = 65535 - j;
     }
-    uint16_t jj  = scale16( j, j);
+    uint16_t jj  = l8t_scale16( j, j);
     uint16_t jj2 = jj << 1;
     if( i & 0x8000 ) {
         jj2 = 65535 - jj2;
@@ -651,8 +651,8 @@ LIB8STATIC uint16_t l8t_ease16InOutQuad( uint16_t i)
 ///                 Takes around 18 cycles on AVR
 LIB8STATIC l8t_fract8 l8t_ease8InOutCubic( l8t_fract8 i)
 {
-    uint8_t ii  = scale8_LEAVING_R1_DIRTY(  i, i);
-    uint8_t iii = scale8_LEAVING_R1_DIRTY( ii, i);
+    uint8_t ii  = l8t_scale8_LEAVING_R1_DIRTY(  i, i);
+    uint8_t iii = l8t_scale8_LEAVING_R1_DIRTY( ii, i);
 
     uint16_t r1 = (3 * (uint16_t)(ii)) - ( 2 * (uint16_t)(iii));
 
@@ -913,9 +913,9 @@ LIB8STATIC uint16_t l8t_beatsin88( l8t_accum88 beats_per_minute_88, uint16_t low
                               uint32_t timebase = 0, uint16_t phase_offset = 0)
 {
     uint16_t beat = l8t_beat88( beats_per_minute_88, timebase);
-    uint16_t beatsin = (sin16( beat + phase_offset) + 32768);
+    uint16_t beatsin = (l8t_sin16( beat + phase_offset) + 32768);
     uint16_t rangewidth = highest - lowest;
-    uint16_t scaledbeat = scale16( beatsin, rangewidth);
+    uint16_t scaledbeat = l8t_scale16( beatsin, rangewidth);
     uint16_t result = lowest + scaledbeat;
     return result;
 }
@@ -926,9 +926,9 @@ LIB8STATIC uint16_t l8t_beatsin16( l8t_accum88 beats_per_minute, uint16_t lowest
                                uint32_t timebase = 0, uint16_t phase_offset = 0)
 {
     uint16_t beat = l8t_beat16( beats_per_minute, timebase);
-    uint16_t beatsin = (sin16( beat + phase_offset) + 32768);
+    uint16_t beatsin = (l8t_sin16( beat + phase_offset) + 32768);
     uint16_t rangewidth = highest - lowest;
-    uint16_t scaledbeat = scale16( beatsin, rangewidth);
+    uint16_t scaledbeat = l8t_scale16( beatsin, rangewidth);
     uint16_t result = lowest + scaledbeat;
     return result;
 }
@@ -939,9 +939,9 @@ LIB8STATIC uint8_t l8t_beatsin8( l8t_accum88 beats_per_minute, uint8_t lowest = 
                             uint32_t timebase = 0, uint8_t phase_offset = 0)
 {
     uint8_t beat = l8t_beat8( beats_per_minute, timebase);
-    uint8_t beatsin = sin8( beat + phase_offset);
+    uint8_t beatsin = l8t_sin8( beat + phase_offset);
     uint8_t rangewidth = highest - lowest;
-    uint8_t scaledbeat = scale8( beatsin, rangewidth);
+    uint8_t scaledbeat = l8t_scale8( beatsin, rangewidth);
     uint8_t result = lowest + scaledbeat;
     return result;
 }
@@ -1017,7 +1017,7 @@ LIB8STATIC uint16_t l8t_bseconds16()
 {
     uint32_t ms = GET_MILLIS();
     uint16_t s16;
-    s16 = div1024_32_16( ms);
+    s16 = l8t_div1024_32_16( ms);
     return s16;
 }
 

@@ -15,9 +15,9 @@
 ///@{
 
 #if defined(__AVR__)
-#define sin16 l8t_sin16_avr
+#define l8t_sin16 l8t_sin16_avr
 #else
-#define sin16 l8t_sin16_C
+#define l8t_sin16 l8t_sin16_C
 #endif
 
 /// Fast 16-bit approximation of sin(x). This approximation never varies more than
@@ -119,12 +119,12 @@ LIB8STATIC int16_t l8t_sin16_C( uint16_t theta )
 /// @returns sin of theta, value between -32767 to 32767.
 LIB8STATIC int16_t l8t_cos16( uint16_t theta)
 {
-    return sin16( theta + 16384);
+    return l8t_sin16( theta + 16384);
 }
 
 ///////////////////////////////////////////////////////////////////////
 
-// sin8 & cos8
+// l8t_sin8 & l8t_cos8
 //        Fast 8-bit approximations of sin(x) & cos(x).
 //        Input angle is an unsigned int from 0-255.
 //        Output is an unsigned int from 0 to 255.
@@ -141,9 +141,9 @@ LIB8STATIC int16_t l8t_cos16( uint16_t theta)
 //        20X faster than floating point sin(x) and cos(x)
 
 #if defined(__AVR__) && !defined(LIB8_ATTINY)
-#define sin8 l8t_sin8_avr
+#define l8t_sin8 l8t_sin8_avr
 #else
-#define sin8 l8t_sin8_C
+#define l8t_sin8 l8t_sin8_C
 #endif
 
 
