@@ -17,7 +17,7 @@ void solid(ledfx_RGB* leds, uint16_t num_leds, const struct animation_config* co
         num = animation_t.params[2];
     }
 
-    for( int i = 0; i < num; ++i) {
+    for( uint16_t i = 0; i < num; ++i) {
         leds[offset + i] = color;
     }
 }

@@ -31,9 +31,9 @@ static struct ledfx_state animation_t;
 const ledfx_RGB ledfx_color(uint32_t color)
 {
     const ledfx_RGB c = {
-        .r = (color >> 16) & 0xFF,
-        .g = (color >> 8) & 0xFF,
-        .b = (color >> 0) & 0xFF,
+        .r = (uint8_t)((color >> 16) & 0xFF),
+        .g = (uint8_t)((color >> 8) & 0xFF),
+        .b = (uint8_t)((color >> 0) & 0xFF),
     };
 
     return c;
@@ -41,7 +41,7 @@ const ledfx_RGB ledfx_color(uint32_t color)
 
 uint32_t ledfx_color(ledfx_RGB color)
 {
-    return (color.r << 16) | (color.g << 8) | (color.b << 0);
+    return ((uint32_t)color.r << 16) | ((uint32_t)color.g << 8) | ((uint32_t)color.b << 0);
 }
 
 const ledfx_RGB ledfx_color(uint8_t r, uint8_t g, uint8_t b)
@@ -65,7 +65,7 @@ void ledfx_state_reset()
 }
 
 const struct animation_config* ledfx_get_config(uint8_t effect_id){
-    for(int i = 0; i < COUNT_OF(configs); i++){
+    for(uint8_t i = 0; i < COUNT_OF(configs); i++){
         if(configs[i]->id == effect_id){
             return configs[i];
         }
@@ -74,9 +74,9 @@ const struct animation_config* ledfx_get_config(uint8_t effect_id){
     return NULL;
 }
 
-int ledfx_set_param(uint8_t index, uint32_t param){
+void ledfx_set_param(uint8_t index, uint32_t param){
     if(animation_t.params == nullptr){
-        animation_t.params = malloc(sizeof(uint32_t)*MAX_PARAMS);
+        animation_t.params = (uint32_t*)malloc(sizeof(uint32_t)*MAX_PARAMS);
     }
 
     animation_t.params[index] = param;
