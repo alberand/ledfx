@@ -17,7 +17,7 @@
 ///  the numerator of a fraction whose denominator is 256
 ///  In other words, it computes i * (scale / 256)
 ///  4 clocks AVR with MUL, 2 clocks ARM
-LIB8STATIC_ALWAYS_INLINE uint8_t scale8( uint8_t i, fract8 scale)
+LIB8STATIC_ALWAYS_INLINE uint8_t scale8( uint8_t i, l8t_fract8 scale)
 {
 #if SCALE8_C == 1
 #if (FASTLED_SCALE8_FIXED == 1)
@@ -95,7 +95,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t scale8( uint8_t i, fract8 scale)
 ///  inputs are non-zero, the output is guaranteed to be non-zero.
 ///  This makes for better 'video'/LED dimming, at the cost of
 ///  several additional cycles.
-LIB8STATIC_ALWAYS_INLINE uint8_t scale8_video( uint8_t i, fract8 scale)
+LIB8STATIC_ALWAYS_INLINE uint8_t scale8_video( uint8_t i, l8t_fract8 scale)
 {
 #if SCALE8_C == 1 || defined(LIB8_ATTINY)
     uint8_t j = (((int)i * (int)scale) >> 8) + ((i&&scale)?1:0);
@@ -141,7 +141,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t scale8_video( uint8_t i, fract8 scale)
 /// This version of scale8 does not clean up the R1 register on AVR
 /// If you are doing several 'scale8's in a row, use this, and
 /// then explicitly call cleanup_R1.
-LIB8STATIC_ALWAYS_INLINE uint8_t scale8_LEAVING_R1_DIRTY( uint8_t i, fract8 scale)
+LIB8STATIC_ALWAYS_INLINE uint8_t scale8_LEAVING_R1_DIRTY( uint8_t i, l8t_fract8 scale)
 {
 #if SCALE8_C == 1
 #if (FASTLED_SCALE8_FIXED == 1)
@@ -184,7 +184,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t scale8_LEAVING_R1_DIRTY( uint8_t i, fract8 scal
 /// If you are doing several 'scale8's in a row, use this, and
 /// then explicitly call cleanup_R1.
 
-LIB8STATIC_ALWAYS_INLINE void nscale8_LEAVING_R1_DIRTY( uint8_t& i, fract8 scale)
+LIB8STATIC_ALWAYS_INLINE void nscale8_LEAVING_R1_DIRTY( uint8_t& i, l8t_fract8 scale)
 {
 #if SCALE8_C == 1
 #if (FASTLED_SCALE8_FIXED == 1)
@@ -225,7 +225,7 @@ LIB8STATIC_ALWAYS_INLINE void nscale8_LEAVING_R1_DIRTY( uint8_t& i, fract8 scale
 /// This version of scale8_video does not clean up the R1 register on AVR
 /// If you are doing several 'scale8_video's in a row, use this, and
 /// then explicitly call cleanup_R1.
-LIB8STATIC_ALWAYS_INLINE uint8_t scale8_video_LEAVING_R1_DIRTY( uint8_t i, fract8 scale)
+LIB8STATIC_ALWAYS_INLINE uint8_t scale8_video_LEAVING_R1_DIRTY( uint8_t i, l8t_fract8 scale)
 {
 #if SCALE8_C == 1 || defined(LIB8_ATTINY)
     uint8_t j = (((int)i * (int)scale) >> 8) + ((i&&scale)?1:0);
@@ -270,7 +270,7 @@ LIB8STATIC_ALWAYS_INLINE uint8_t scale8_video_LEAVING_R1_DIRTY( uint8_t i, fract
 /// does not clean up the R1 register on AVR
 /// If you are doing several 'scale8_video's in a row, use this, and
 /// then explicitly call cleanup_R1.
-LIB8STATIC_ALWAYS_INLINE void nscale8_video_LEAVING_R1_DIRTY( uint8_t & i, fract8 scale)
+LIB8STATIC_ALWAYS_INLINE void nscale8_video_LEAVING_R1_DIRTY( uint8_t & i, l8t_fract8 scale)
 {
 #if SCALE8_C == 1 || defined(LIB8_ATTINY)
     i = (((int)i * (int)scale) >> 8) + ((i&&scale)?1:0);
@@ -308,7 +308,7 @@ LIB8STATIC_ALWAYS_INLINE void cleanup_R1()
 ///
 ///         THIS FUNCTION ALWAYS MODIFIES ITS ARGUMENTS IN PLACE
 
-LIB8STATIC void nscale8x3( uint8_t& r, uint8_t& g, uint8_t& b, fract8 scale)
+LIB8STATIC void nscale8x3( uint8_t& r, uint8_t& g, uint8_t& b, l8t_fract8 scale)
 {
 #if SCALE8_C == 1
 #if (FASTLED_SCALE8_FIXED == 1)
@@ -338,7 +338,7 @@ LIB8STATIC void nscale8x3( uint8_t& r, uint8_t& g, uint8_t& b, fract8 scale)
 /// argument.
 ///
 ///         THIS FUNCTION ALWAYS MODIFIES ITS ARGUMENTS IN PLACE
-LIB8STATIC void nscale8x3_video( uint8_t& r, uint8_t& g, uint8_t& b, fract8 scale)
+LIB8STATIC void nscale8x3_video( uint8_t& r, uint8_t& g, uint8_t& b, l8t_fract8 scale)
 {
 #if SCALE8_C == 1
     uint8_t nonzeroscale = (scale != 0) ? 1 : 0;
@@ -361,7 +361,7 @@ LIB8STATIC void nscale8x3_video( uint8_t& r, uint8_t& g, uint8_t& b, fract8 scal
 ///
 ///         THIS FUNCTION ALWAYS MODIFIES ITS ARGUMENTS IN PLACE
 
-LIB8STATIC void nscale8x2( uint8_t& i, uint8_t& j, fract8 scale)
+LIB8STATIC void nscale8x2( uint8_t& i, uint8_t& j, l8t_fract8 scale)
 {
 #if SCALE8_C == 1
 #if FASTLED_SCALE8_FIXED == 1
@@ -390,7 +390,7 @@ LIB8STATIC void nscale8x2( uint8_t& i, uint8_t& j, fract8 scale)
 ///         THIS FUNCTION ALWAYS MODIFIES ITS ARGUMENTS IN PLACE
 
 
-LIB8STATIC void nscale8x2_video( uint8_t& i, uint8_t& j, fract8 scale)
+LIB8STATIC void nscale8x2_video( uint8_t& i, uint8_t& j, l8t_fract8 scale)
 {
 #if SCALE8_C == 1
     uint8_t nonzeroscale = (scale != 0) ? 1 : 0;
@@ -410,7 +410,7 @@ LIB8STATIC void nscale8x2_video( uint8_t& i, uint8_t& j, fract8 scale)
 ///         considered as numerator of a fraction whose denominator
 ///         is 256. In other words, it computes i * (scale / 256)
 
-LIB8STATIC_ALWAYS_INLINE uint16_t scale16by8( uint16_t i, fract8 scale )
+LIB8STATIC_ALWAYS_INLINE uint16_t scale16by8( uint16_t i, l8t_fract8 scale )
 {
 #if SCALE16BY8_C == 1
     uint16_t result;
@@ -479,7 +479,7 @@ LIB8STATIC_ALWAYS_INLINE uint16_t scale16by8( uint16_t i, fract8 scale )
 ///         considered as numerator of a fraction whose denominator
 ///         is 65536. In other words, it computes i * (scale / 65536)
 
-LIB8STATIC uint16_t scale16( uint16_t i, fract16 scale )
+LIB8STATIC uint16_t scale16( uint16_t i, l8t_fract16 scale )
 {
   #if SCALE16_C == 1
     uint16_t result;

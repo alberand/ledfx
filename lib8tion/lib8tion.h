@@ -123,13 +123,13 @@
 
  - Linear interpolation between two values, with the
    fraction between them expressed as an 8- or 16-bit
-   fixed point fraction (fract8 or fract16).
-     lerp8by8(   fromU8, toU8, fract8 )
-     lerp16by8(  fromU16, toU16, fract8 )
-     lerp15by8(  fromS16, toS16, fract8 )
-       == from + (( to - from ) * fract8) / 256)
-     lerp16by16( fromU16, toU16, fract16 )
-       == from + (( to - from ) * fract16) / 65536)
+   fixed point fraction (l8t_fract8 or l8t_fract16).
+     lerp8by8(   fromU8, toU8, l8t_fract8 )
+     lerp16by8(  fromU16, toU16, l8t_fract8 )
+     lerp15by8(  fromS16, toS16, l8t_fract8 )
+       == from + (( to - from ) * l8t_fract8) / 256)
+     lerp16by16( fromU16, toU16, l8t_fract16 )
+       == from + (( to - from ) * l8t_fract16) / 65536)
      map8( in, rangeStart, rangeEnd)
        == map( in, 0, 255, rangeStart, rangeEnd);
 
@@ -324,55 +324,55 @@ Lib8tion is pronounced like 'libation': lie-BAY-shun
 //
 // typdefs for fixed-point fractional types.
 //
-// sfract7 should be interpreted as signed 128ths.
-// fract8 should be interpreted as unsigned 256ths.
-// sfract15 should be interpreted as signed 32768ths.
-// fract16 should be interpreted as unsigned 65536ths.
+// l8t_sfract7 should be interpreted as signed 128ths.
+// l8t_fract8 should be interpreted as unsigned 256ths.
+// l8t_sfract15 should be interpreted as signed 32768ths.
+// l8t_fract16 should be interpreted as unsigned 65536ths.
 //
-// Example: if a fract8 has the value "64", that should be interpreted
+// Example: if a l8t_fract8 has the value "64", that should be interpreted
 //          as 64/256ths, or one-quarter.
 //
 //
-//  fract8   range is 0 to 0.99609375
+//  l8t_fract8   range is 0 to 0.99609375
 //                 in steps of 0.00390625
 //
-//  sfract7  range is -0.9921875 to 0.9921875
+//  l8t_sfract7  range is -0.9921875 to 0.9921875
 //                 in steps of 0.0078125
 //
-//  fract16  range is 0 to 0.99998474121
+//  l8t_fract16  range is 0 to 0.99998474121
 //                 in steps of 0.00001525878
 //
-//  sfract15 range is -0.99996948242 to 0.99996948242
+//  l8t_sfract15 range is -0.99996948242 to 0.99996948242
 //                 in steps of 0.00003051757
 //
 
 /// ANSI unsigned short _Fract.  range is 0 to 0.99609375
 ///                 in steps of 0.00390625
-typedef uint8_t   fract8;   ///< ANSI: unsigned short _Fract
+typedef uint8_t   l8t_fract8;   ///< ANSI: unsigned short _Fract
 
 ///  ANSI: signed short _Fract.  range is -0.9921875 to 0.9921875
 ///                 in steps of 0.0078125
-typedef int8_t    sfract7;  ///< ANSI: signed   short _Fract
+typedef int8_t    l8t_sfract7;  ///< ANSI: signed   short _Fract
 
 ///  ANSI: unsigned _Fract.  range is 0 to 0.99998474121
 ///                 in steps of 0.00001525878
-typedef uint16_t  fract16;  ///< ANSI: unsigned       _Fract
+typedef uint16_t  l8t_fract16;  ///< ANSI: unsigned       _Fract
 
 ///  ANSI: signed _Fract.  range is -0.99996948242 to 0.99996948242
 ///                 in steps of 0.00003051757
-typedef int16_t   sfract15; ///< ANSI: signed         _Fract
+typedef int16_t   l8t_sfract15; ///< ANSI: signed         _Fract
 
 
 // accumXY types should be interpreted as X bits of integer,
 //         and Y bits of fraction.
-//         E.g., accum88 has 8 bits of int, 8 bits of fraction
+//         E.g., l8t_accum88 has 8 bits of int, 8 bits of fraction
 
-typedef uint16_t  accum88;  ///< ANSI: unsigned short _Accum.  8 bits int, 8 bits fraction
-typedef int16_t   saccum78; ///< ANSI: signed   short _Accum.  7 bits int, 8 bits fraction
-typedef uint32_t  accum1616;///< ANSI: signed         _Accum. 16 bits int, 16 bits fraction
-typedef int32_t   saccum1516;///< ANSI: signed         _Accum. 15 bits int, 16 bits fraction
-typedef uint16_t  accum124; ///< no direct ANSI counterpart. 12 bits int, 4 bits fraction
-typedef int32_t   saccum114;///< no direct ANSI counterpart. 1 bit int, 14 bits fraction
+typedef uint16_t  l8t_accum88;  ///< ANSI: unsigned short _Accum.  8 bits int, 8 bits fraction
+typedef int16_t   l8t_saccum78; ///< ANSI: signed   short _Accum.  7 bits int, 8 bits fraction
+typedef uint32_t  l8t_accum1616;///< ANSI: signed         _Accum. 16 bits int, 16 bits fraction
+typedef int32_t   l8t_saccum1516;///< ANSI: signed         _Accum. 15 bits int, 16 bits fraction
+typedef uint16_t  l8t_accum124; ///< no direct ANSI counterpart. 12 bits int, 4 bits fraction
+typedef int32_t   l8t_saccum114;///< no direct ANSI counterpart. 1 bit int, 14 bits fraction
 
 
 /// typedef for IEEE754 "binary32" float type internals
@@ -416,9 +416,9 @@ typedef union {
 //
 // Note that anything involving a 'float' on AVR will be slower.
 
-/// sfract15ToFloat: conversion from sfract15 fixed point to
+/// l8t_sfract15ToFloat: conversion from l8t_sfract15 fixed point to
 ///                  IEEE754 32-bit float.
-LIB8STATIC float sfract15ToFloat( sfract15 y)
+LIB8STATIC float l8t_sfract15ToFloat( l8t_sfract15 y)
 {
     return y / 32768.0;
 }
@@ -427,7 +427,7 @@ LIB8STATIC float sfract15ToFloat( sfract15 y)
 ///                  to 16-bit fixed point.  Note that the extremes of
 ///                  one and negative one are NOT representable.  The
 ///                  representable range is basically
-LIB8STATIC sfract15 floatToSfract15( float f)
+LIB8STATIC l8t_sfract15 floatToSfract15( float f)
 {
     return f * 32768.0;
 }
@@ -470,7 +470,7 @@ void * memset8 ( void * ptr, uint8_t value, uint16_t num ) __attribute__ ((noinl
 
 /// linear interpolation between two unsigned 8-bit values,
 /// with 8-bit fraction
-LIB8STATIC uint8_t lerp8by8( uint8_t a, uint8_t b, fract8 frac)
+LIB8STATIC uint8_t lerp8by8( uint8_t a, uint8_t b, l8t_fract8 frac)
 {
     uint8_t result;
     if( b > a) {
@@ -487,7 +487,7 @@ LIB8STATIC uint8_t lerp8by8( uint8_t a, uint8_t b, fract8 frac)
 
 /// linear interpolation between two unsigned 16-bit values,
 /// with 16-bit fraction
-LIB8STATIC uint16_t lerp16by16( uint16_t a, uint16_t b, fract16 frac)
+LIB8STATIC uint16_t lerp16by16( uint16_t a, uint16_t b, l8t_fract16 frac)
 {
     uint16_t result;
     if( b > a ) {
@@ -504,7 +504,7 @@ LIB8STATIC uint16_t lerp16by16( uint16_t a, uint16_t b, fract16 frac)
 
 /// linear interpolation between two unsigned 16-bit values,
 /// with 8-bit fraction
-LIB8STATIC uint16_t lerp16by8( uint16_t a, uint16_t b, fract8 frac)
+LIB8STATIC uint16_t lerp16by8( uint16_t a, uint16_t b, l8t_fract8 frac)
 {
     uint16_t result;
     if( b > a) {
@@ -521,7 +521,7 @@ LIB8STATIC uint16_t lerp16by8( uint16_t a, uint16_t b, fract8 frac)
 
 /// linear interpolation between two signed 15-bit values,
 /// with 8-bit fraction
-LIB8STATIC int16_t lerp15by8( int16_t a, int16_t b, fract8 frac)
+LIB8STATIC int16_t lerp15by8( int16_t a, int16_t b, l8t_fract8 frac)
 {
     int16_t result;
     if( b > a) {
@@ -538,7 +538,7 @@ LIB8STATIC int16_t lerp15by8( int16_t a, int16_t b, fract8 frac)
 
 /// linear interpolation between two signed 15-bit values,
 /// with 8-bit fraction
-LIB8STATIC int16_t lerp15by16( int16_t a, int16_t b, fract16 frac)
+LIB8STATIC int16_t lerp15by16( int16_t a, int16_t b, l8t_fract16 frac)
 {
     int16_t result;
     if( b > a) {
@@ -649,7 +649,7 @@ LIB8STATIC uint16_t ease16InOutQuad( uint16_t i)
 
 /// ease8InOutCubic: 8-bit cubic ease-in / ease-out function
 ///                 Takes around 18 cycles on AVR
-LIB8STATIC fract8 ease8InOutCubic( fract8 i)
+LIB8STATIC l8t_fract8 ease8InOutCubic( l8t_fract8 i)
 {
     uint8_t ii  = scale8_LEAVING_R1_DIRTY(  i, i);
     uint8_t iii = scale8_LEAVING_R1_DIRTY( ii, i);
@@ -678,7 +678,7 @@ LIB8STATIC fract8 ease8InOutCubic( fract8 i)
 ///                   Asm version takes around 7 cycles on AVR.
 
 #if EASE8_C == 1
-LIB8STATIC fract8 ease8InOutApprox( fract8 i)
+LIB8STATIC l8t_fract8 ease8InOutApprox( l8t_fract8 i)
 {
     if( i < 64) {
         // start with slope 0.5
@@ -699,7 +699,7 @@ LIB8STATIC fract8 ease8InOutApprox( fract8 i)
 }
 
 #elif EASE8_AVRASM == 1
-LIB8STATIC uint8_t ease8InOutApprox( fract8 i)
+LIB8STATIC uint8_t ease8InOutApprox( l8t_fract8 i)
 {
     // takes around 7 cycles on AVR
     asm volatile (
@@ -839,7 +839,7 @@ LIB8STATIC uint8_t squarewave8( uint8_t in, uint8_t pulsewidth=128)
 //  BPM can be supplied two ways.  The simpler way of specifying BPM is as
 //  a simple 8-bit integer from 1-255, (e.g., "120").
 //  The more sophisticated way of specifying BPM allows for fractional
-//  "Q8.8" fixed point number (an 'accum88') with an 8-bit integer part and
+//  "Q8.8" fixed point number (an 'l8t_accum88') with an 8-bit integer part and
 //  an 8-bit fractional part.  The easiest way to construct this is to multiply
 //  a floating point BPM value (e.g. 120.3) by 256, (e.g. resulting in 30796
 //  in this case), and pass that as the 16-bit BPM argument.
@@ -876,7 +876,7 @@ uint32_t get_millisecond_timer();
 ///        for this function, 120 BPM MUST BE specified as
 ///        120*256 = 30720.
 ///        If you just want to specify "120", use beat16 or beat8.
-LIB8STATIC uint16_t beat88( accum88 beats_per_minute_88, uint32_t timebase = 0)
+LIB8STATIC uint16_t beat88( l8t_accum88 beats_per_minute_88, uint32_t timebase = 0)
 {
     // BPM is 'beats per minute', or 'beats per 60000ms'.
     // To avoid using the (slower) division operator, we
@@ -890,15 +890,15 @@ LIB8STATIC uint16_t beat88( accum88 beats_per_minute_88, uint32_t timebase = 0)
 }
 
 /// beat16 generates a 16-bit 'sawtooth' wave at a given BPM
-LIB8STATIC uint16_t beat16( accum88 beats_per_minute, uint32_t timebase = 0)
+LIB8STATIC uint16_t beat16( l8t_accum88 beats_per_minute, uint32_t timebase = 0)
 {
-    // Convert simple 8-bit BPM's to full Q8.8 accum88's if needed
+    // Convert simple 8-bit BPM's to full Q8.8 l8t_accum88's if needed
     if( beats_per_minute < 256) beats_per_minute <<= 8;
     return beat88(beats_per_minute, timebase);
 }
 
 /// beat8 generates an 8-bit 'sawtooth' wave at a given BPM
-LIB8STATIC uint8_t beat8( accum88 beats_per_minute, uint32_t timebase = 0)
+LIB8STATIC uint8_t beat8( l8t_accum88 beats_per_minute, uint32_t timebase = 0)
 {
     return beat16( beats_per_minute, timebase) >> 8;
 }
@@ -909,7 +909,7 @@ LIB8STATIC uint8_t beat8( accum88 beats_per_minute, uint32_t timebase = 0)
 ///           a Q8.8 fixed-point value; e.g. 120BPM must be
 ///           specified as 120*256 = 30720.
 ///           If you just want to specify "120", use beatsin16 or beatsin8.
-LIB8STATIC uint16_t beatsin88( accum88 beats_per_minute_88, uint16_t lowest = 0, uint16_t highest = 65535,
+LIB8STATIC uint16_t beatsin88( l8t_accum88 beats_per_minute_88, uint16_t lowest = 0, uint16_t highest = 65535,
                               uint32_t timebase = 0, uint16_t phase_offset = 0)
 {
     uint16_t beat = beat88( beats_per_minute_88, timebase);
@@ -922,7 +922,7 @@ LIB8STATIC uint16_t beatsin88( accum88 beats_per_minute_88, uint16_t lowest = 0,
 
 /// beatsin16 generates a 16-bit sine wave at a given BPM,
 ///           that oscillates within a given range.
-LIB8STATIC uint16_t beatsin16( accum88 beats_per_minute, uint16_t lowest = 0, uint16_t highest = 65535,
+LIB8STATIC uint16_t beatsin16( l8t_accum88 beats_per_minute, uint16_t lowest = 0, uint16_t highest = 65535,
                                uint32_t timebase = 0, uint16_t phase_offset = 0)
 {
     uint16_t beat = beat16( beats_per_minute, timebase);
@@ -935,7 +935,7 @@ LIB8STATIC uint16_t beatsin16( accum88 beats_per_minute, uint16_t lowest = 0, ui
 
 /// beatsin8 generates an 8-bit sine wave at a given BPM,
 ///           that oscillates within a given range.
-LIB8STATIC uint8_t beatsin8( accum88 beats_per_minute, uint8_t lowest = 0, uint8_t highest = 255,
+LIB8STATIC uint8_t beatsin8( l8t_accum88 beats_per_minute, uint8_t lowest = 0, uint8_t highest = 255,
                             uint32_t timebase = 0, uint8_t phase_offset = 0)
 {
     uint8_t beat = beat8( beats_per_minute, timebase);
