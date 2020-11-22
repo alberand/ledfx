@@ -3,12 +3,12 @@
 
 #include <ledfx.h>
 
-void confetti(RGB* leds, uint16_t num_leds, const struct animation_config* config)
+void confetti(ledfx_RGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     static uint16_t hue = 0;
-    fadeToBlackBy( leds, num_leds, 10);
-    int pos = random16(num_leds);
-    leds[pos] += CHSV( hue++ + random8(64), 200, 255);
+    nscale8x3(leds[i].r, leds[i].g, leds[i].b, 245);
+    int pos = l8t_random16(num_leds);
+    leds[pos] += CHSV( hue++ + l8t_random8(64), 200, 255);
 }
 
 static struct animation_config confetti_config = 
