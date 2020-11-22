@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void twinkle(RGB* leds, uint16_t num_leds, const struct animation_config* config)
+void twinkle(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     if(animation_t.iteration == 400) {
         animation_t.iteration = 0;

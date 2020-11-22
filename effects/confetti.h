@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void confetti(RGB* leds, uint16_t num_leds, const struct animation_config* config)
+void confetti(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     static uint16_t hue = 0;
     fadeToBlackBy( leds, num_leds, 10);

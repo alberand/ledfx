@@ -6,7 +6,7 @@
 #define POSITION_IN_SECOND_HALF(i, p) (i >= (uint16_t)int(p/2))
 #define POSITION_IN_FIRST_HALF(i, p) (i < (uint16_t)int(p/2))
 
-void color_wipe(RGB* leds, uint16_t num_leds, const struct animation_config* config)
+void color_wipe(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     const CRGB color = animation_t.params[0];
 

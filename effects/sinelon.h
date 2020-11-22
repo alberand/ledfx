@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void sinelon(RGB* leds, uint16_t num_leds, const struct animation_config* config)
+void sinelon(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     static uint16_t hue = 0;
     fadeToBlackBy( leds, num_leds, 20);

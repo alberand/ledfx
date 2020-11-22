@@ -3,9 +3,9 @@
 
 #include <ledfx.h>
 
-void fadeinout(ledfx_RGB* leds, uint16_t num_leds, const struct animation_config* config)
+void fadeinout(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const ledfx_RGB color = ledfx_int_to_rgb(animation_t.params[0]);
+    const CRGB color = animation_t.params[0];
 
     animation_t.iteration++;
     if(animation_t.iteration < 128) {
@@ -14,9 +14,9 @@ void fadeinout(ledfx_RGB* leds, uint16_t num_leds, const struct animation_config
         }
     } else if(animation_t.iteration < 256) {
         for(uint16_t i = 0; i < num_leds; i++) {
-            leds[i].r = color.red * (animation_t.iteration - 127)/127;
-            leds[i].g = color.green * (animation_t.iteration - 127)/127;
-            leds[i].b = color.blue * (animation_t.iteration - 127)/127;
+            leds[i].r = color.r * (animation_t.iteration - 127)/127;
+            leds[i].g = color.g * (animation_t.iteration - 127)/127;
+            leds[i].b = color.b * (animation_t.iteration - 127)/127;
         }
     } else {
         animation_t.iteration = 0;

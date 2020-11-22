@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void rainbow(RGB* leds, uint16_t num_leds, const struct animation_config* config)
+void rainbow(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     static uint16_t sPseudotime = 0;
     static uint16_t sLastMillis = 0;

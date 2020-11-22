@@ -14,7 +14,7 @@ typedef struct {
 struct animation_config
 {
     uint8_t id;
-    void (*leds_update)(ledfx_RGB*, uint16_t, const struct animation_config*);
+    void (*leds_update)(CRGB*, uint16_t, const struct animation_config*);
     // Number of parameters
     uint8_t num;
 };
@@ -82,7 +82,7 @@ void ledfx_set_param(uint8_t index, uint32_t param){
     animation_t.params[index] = param;
 }
 
-void ledfx_effect(uint8_t effect_id, ledfx_RGB* leds, uint16_t num_leds)
+void ledfx_effect(uint8_t effect_id, CRGB* leds, uint16_t num_leds)
 {
     const struct animation_config* config = ledfx_get_config(effect_id);
     if(config != NULL){

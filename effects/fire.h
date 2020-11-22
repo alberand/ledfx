@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void fire(ledfx_RGB* leds, uint16_t num_leds, const struct animation_config* config)
+void fire(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     const uint32_t cooling = 55;
     const uint32_t sparking = 120;
@@ -49,11 +49,11 @@ void fire(ledfx_RGB* leds, uint16_t num_leds, const struct animation_config* con
 
         // figure out which third of the spectrum we're in:
         if( t192 > 0x80) {                     // hottest
-            leds[j] = ledfx_color(255, 255, heatramp);
+            leds[j] = CRGB(255, 255, heatramp);
         } else if( t192 > 0x40 ) {             // middle
-            leds[j] = ledfx_color(255, heatramp, 0);
+            leds[j] = CRGB(255, heatramp, 0);
         } else {                               // coolest
-            leds[j] = ledfx_color(0, heatramp, 0);
+            leds[j] = CRGB(0, heatramp, 0);
         }
     }
 

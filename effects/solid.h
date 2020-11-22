@@ -3,9 +3,9 @@
 
 #include <ledfx.h>
 
-void solid(ledfx_RGB* leds, uint16_t num_leds, const struct animation_config* config)
+void solid(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const ledfx_RGB color = ledfx_color(animation_t.params[0]);
+    const CRGB color = CRGB(animation_t.params[0]);
     
     uint16_t offset = 0;
     if(animation_t.params[1] != 0){

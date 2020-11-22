@@ -3,7 +3,7 @@
 
 #include <ledfx.h>
 
-void cylon(RGB* leds, uint16_t num_leds, const struct animation_config* config)
+void cylon(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     static uint8_t hue = 0;
 
