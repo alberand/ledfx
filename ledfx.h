@@ -58,6 +58,10 @@ const ledfx_RGB ledfx_color(uint8_t r, uint8_t g, uint8_t b)
 /* Include auto-generated effects header */
 #include <ledfx_effects.h>
 
+void ledfx_init(){
+    animation_t.params = (uint32_t)malloc(MAX_PARAMS*sizeof(uint32_t));
+}
+
 void ledfx_state_reset()
 {
     animation_t.iteration = 0;
