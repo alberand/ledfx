@@ -79,8 +79,8 @@ const struct animation_config* ledfx_get_config(uint8_t effect_id){
 }
 
 void ledfx_set_param(uint8_t index, uint32_t param){
-    if(animation_t.params == nullptr){
-        animation_t.params = (uint32_t*)malloc(sizeof(uint32_t)*MAX_PARAMS);
+    if(animation_t.params == NULL){
+        ledfx_init();
     }
 
     animation_t.params[index] = param;
