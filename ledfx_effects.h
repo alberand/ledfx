@@ -10,6 +10,7 @@
 #include <effects/confetti.h>
 #include <effects/stroboscope.h>
 #include <effects/twinkle.h>
+#include <effects/segments.h>
 #include <effects/snowsparkle.h>
 #include <effects/train.h>
 #include <effects/juggle.h>
@@ -19,7 +20,7 @@
 #include <effects/cylon.h>
 #include <effects/theater_chase.h>
 
-#define CONFIGS_SIZE 17
+#define CONFIGS_SIZE 18
 
 static struct animation_config* configs[CONFIGS_SIZE] = {
     &fire_config,
@@ -31,6 +32,7 @@ static struct animation_config* configs[CONFIGS_SIZE] = {
     &confetti_config,
     &stroboscope_config,
     &twinkle_config,
+    &segments_config,
     &snowsparkle_config,
     &train_config,
     &juggle_config,
