@@ -23,6 +23,7 @@ struct ledfx_state
 {
     uint16_t iteration;
     // Array for animation parameters
+    uint8_t num;
     uint32_t* params;
 };
 
@@ -76,6 +77,15 @@ const struct animation_config* ledfx_get_config(uint8_t effect_id){
     }
 
     return NULL;
+}
+
+void ledfx_set_total_params(uint8_t num){
+    if(num > MAX_PARAMS){
+        animation_t.num = 0;
+        return;
+    }
+
+    animation_t.num = num;
 }
 
 void ledfx_set_param(uint8_t index, uint32_t param){
