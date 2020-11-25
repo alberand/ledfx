@@ -66,6 +66,7 @@ void ledfx_init(){
 void ledfx_state_reset()
 {
     animation_t.iteration = 0;
+    animation_t.num = 0;
     memset(animation_t.params, 0, sizeof(uint32_t)*MAX_PARAMS);
 }
 
@@ -79,21 +80,17 @@ const struct animation_config* ledfx_get_config(uint8_t effect_id){
     return NULL;
 }
 
-void ledfx_set_total_params(uint8_t num){
-    if(num > MAX_PARAMS){
-        animation_t.num = 0;
-        return;
-    }
-
-    animation_t.num = num;
-}
-
 void ledfx_set_param(uint8_t index, uint32_t param){
     if(animation_t.params == NULL){
         ledfx_init();
     }
 
+    if(animation_t.num + 1 == MAX_PARAMS){
+        return;
+    }
+
     animation_t.params[index] = param;
+    animation_t.num += 1;
 }
 
 void ledfx_effect(uint8_t effect_id, CRGB* leds, uint16_t num_leds)
