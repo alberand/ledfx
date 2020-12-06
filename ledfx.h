@@ -59,15 +59,16 @@ const ledfx_RGB ledfx_color(uint8_t r, uint8_t g, uint8_t b)
 /* Include auto-generated effects header */
 #include <ledfx_effects.h>
 
-void ledfx_init(){
-    animation_t.params = (uint32_t*)malloc(MAX_PARAMS*sizeof(uint32_t));
-}
-
 void ledfx_state_reset()
 {
     animation_t.iteration = 0;
     animation_t.num = 0;
     memset(animation_t.params, 0, sizeof(uint32_t)*MAX_PARAMS);
+}
+
+void ledfx_init(){
+    animation_t.params = (uint32_t*)malloc(MAX_PARAMS*sizeof(uint32_t));
+    ledfx_state_reset();
 }
 
 const struct animation_config* ledfx_get_config(uint8_t effect_id){
@@ -93,7 +94,7 @@ void ledfx_set_param(uint8_t index, uint32_t param){
     animation_t.num += 1;
 }
 
-void ledfx_effect(uint8_t effect_id, CRGB* leds, uint16_t num_leds)
+void ledfx_effect(const uint8_t effect_id, CRGB* leds, const uint16_t num_leds)
 {
     const struct animation_config* config = ledfx_get_config(effect_id);
     if(config != NULL){
