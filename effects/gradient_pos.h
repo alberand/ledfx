@@ -6,7 +6,8 @@
 void gradient_pos(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     const uint16_t offset = animation_t.params[0];
-    const uint16_t len = offset + animation_t.params[1];
+    // -1 because offset pixel also should counts
+    const uint16_t len = offset + animation_t.params[1] - 1;
 
     fill_gradient_RGB(leds, offset, animation_t.params[2], \
                       len, animation_t.params[3]);
