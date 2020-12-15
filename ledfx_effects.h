@@ -9,6 +9,7 @@
 #include <effects/bpm.h>
 #include <effects/confetti.h>
 #include <effects/gradient_pos.h>
+#include <effects/blink.h>
 #include <effects/stroboscope.h>
 #include <effects/twinkle.h>
 #include <effects/segments.h>
@@ -21,7 +22,7 @@
 #include <effects/cylon.h>
 #include <effects/theater_chase.h>
 
-#define CONFIGS_SIZE 19
+#define CONFIGS_SIZE 20
 
 static struct animation_config* configs[CONFIGS_SIZE] = {
     &fire_config,
@@ -32,6 +33,7 @@ static struct animation_config* configs[CONFIGS_SIZE] = {
     &bpm_config,
     &confetti_config,
     &gradient_pos_config,
+    &blink_config,
     &stroboscope_config,
     &twinkle_config,
     &segments_config,
