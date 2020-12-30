@@ -3,7 +3,9 @@
 
 #include <ledfx.h>
 
-void blur1d(CRGB* leds, uint16_t num_leds, uint16_t start, uint16_t stop, fract8 blur_amount)
+// copied from FastLED but modified to apply only on particluar pixes (from
+// start to stop)
+inline void blur(CRGB* leds, uint16_t num_leds, uint16_t start, uint16_t stop, fract8 blur_amount)
 {
     uint8_t keep = 255 - blur_amount;
     uint8_t seep = blur_amount >> 1;
@@ -23,18 +25,19 @@ void blur1d(CRGB* leds, uint16_t num_leds, uint16_t start, uint16_t stop, fract8
 
 void segments(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const uint8_t segmNum = animation_t.num;
     uint16_t segmOffset = 0;
-    const uint16_t segmSize = int(num_leds/segmNum);
 	const uint8_t width = 16;
+    const uint8_t blending = animation_t.params[0];
+    const uint8_t segmNum = animation_t.num;
+    const uint16_t segmSize = int(num_leds/segmNum);
 
-    for(uint8_t i = 0; i < segmNum; i++){
+    for(uint8_t i = 1; i < segmNum; i++){
         const CRGB color = animation_t.params[i];
 
         for(uint16_t i = 0; i < segmSize; ++i) {
             leds[segmOffset + i] = color;
         }
-        blur1d(leds, num_leds, segmOffset - width/2, segmOffset + width/2, 90);
+        blur(leds, num_leds, segmOffset - width/2, segmOffset + width/2, blending);
         segmOffset += segmSize;
     }
 }
