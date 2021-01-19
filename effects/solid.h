@@ -3,22 +3,22 @@
 
 #include <ledfx.h>
 
-void solid(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
+void solid()
 {
-    const CRGB color = CRGB(animation_t.params[0]);
+    const ledfx_color color = ledfx_color_init(ledfx_get_param(0));
     
     uint16_t offset = 0;
-    if(animation_t.params[1] != 0){
-        offset = animation_t.params[1];
+    if(ledfx_get_param(1) != 0){
+        offset = ledfx_get_param(1);
     }
 
-    uint16_t num = num_leds;
-    if(animation_t.params[2] != 0){
-        num = animation_t.params[2];
+    uint16_t num = animation_t.num_leds;
+    if(ledfx_get_param(2) != 0){
+        num = ledfx_get_param(2);
     }
 
     for( uint16_t i = 0; i < num; ++i) {
-        leds[offset + i] = color;
+        animation_t.leds[offset + i] = color;
     }
 }
 
