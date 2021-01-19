@@ -22,9 +22,9 @@ if __name__ == '__main__':
         header.write(f'\n#define CONFIGS_SIZE {len(effects)}\n\n')
 
         # Add list of references to configs
-        header.write('static struct animation_config* configs[CONFIGS_SIZE] = {\n')
+        header.write('static void (*effect_ptr[CONFIGS_SIZE])() = {\n')
         for f in effects:
-            header.write(f'    &{get_filename(f)}_config,\n')
+            header.write(f'    &{get_filename(f)},\n')
         header.write('};\n\n')
 
         # Close header guard

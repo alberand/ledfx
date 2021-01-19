@@ -22,11 +22,4 @@ void solid()
     }
 }
 
-static struct animation_config solid_config = 
-{
-    .id = 0x41,
-    .leds_update = solid,
-    .num = 3,
-};
-
 #endif // __SOLID_H__

@@ -11,13 +11,6 @@ typedef struct {
     uint8_t b;
 } ledfx_color;
 
-struct animation_config {
-    uint8_t id;
-    void (*leds_update)();
-    // Number of parameters
-    uint8_t num;
-};
-
 struct ledfx_state {
     // strip configuration
     ledfx_color* leds;
@@ -26,7 +19,7 @@ struct ledfx_state {
 
     // current animation
     uint16_t iteration;
-    struct animation_config* current;
+    uint8_t current;
 
     // params storage
     uint8_t index;
@@ -115,27 +108,16 @@ void ledfx_init(ledfx_color* leds, uint16_t num_leds){
     ledfx_params_reset();
 }
 
+void ledfx_effect(const uint8_t effect_id) {
+    animation_t.current = effect_id;
+}
+
 /* Include auto-generated effects header */
 #include <ledfx_effects.h>
 
-const struct animation_config* ledfx_get_config(uint8_t effect_id){
-    for(uint8_t i = 0; i < COUNT_OF(configs); i++){
-        if(configs[i]->id == effect_id){
-            return configs[i];
-        }
-    }
-
-    return NULL;
+void ledfx_service(){
+    effect_ptr[animation_t.current]();
+    animation_t.iteration++;
 }
-
-void ledfx_effect(const uint8_t effect_id) {
-    const struct animation_config* config = ledfx_get_config(effect_id);
-    animation_t.current = config;
-    if(config != NULL){
-        config->leds_update();
-        animation_t.iteration++;
-    }
-}
-
 
 #endif // __LEDFX_H__
