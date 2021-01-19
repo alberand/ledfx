@@ -112,6 +112,14 @@ void ledfx_effect(const uint8_t effect_id) {
     animation_t.current = effect_id;
 }
 
+void ledfx_set_pixel(uint16_t id, ledfx_color color){
+	animation_t.leds[id] = color;
+}
+
+void ledfx_set_pixel(uint16_t id, uint32_t color){
+	ledfx_set_pixel(id, ledfx_int_to_color(color));
+}
+
 /* Include auto-generated effects header */
 #include <ledfx_effects.h>
 

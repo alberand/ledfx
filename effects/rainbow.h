@@ -23,7 +23,7 @@ void rainbow() {
 
 	for(int i = 0; i < animation_t.num_leds; i++){
 		const uint8_t pos = offset + i + step;
-		animation_t.leds[i] = ledfx_int_to_color(color_wheel(pos));
+		ledfx_set_pixel(i, ledfx_int_to_color(color_wheel(pos)));
 	}
 }
 

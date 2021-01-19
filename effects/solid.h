@@ -3,8 +3,7 @@
 
 #include <ledfx.h>
 
-void solid()
-{
+void solid() {
     const ledfx_color color = ledfx_color_init(ledfx_get_param(0));
     
     uint16_t offset = 0;
@@ -18,7 +17,7 @@ void solid()
     }
 
     for( uint16_t i = 0; i < num; ++i) {
-        animation_t.leds[offset + i] = color;
+		ledfx_set_pixel(offset + i, color);
     }
 }
 
