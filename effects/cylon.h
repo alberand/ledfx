@@ -3,28 +3,73 @@
 
 #include <ledfx.h>
 
-void cylon(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
+uint32_t HsvToRgb(uint8_t h, uint8_t s, uint8_t v)
 {
-    static uint8_t hue = 0;
+	uint8_t r, g, b;
+    unsigned char region, remainder, p, q, t;
 
-    for(uint16_t i = 0; i < num_leds; i++) {
-        leds[i].nscale8(250);
+    if (s == 0)
+    {
+        r = v;
+        g = v;
+        b = v;
+    	return ((uint32_t)r << 16) | ((uint32_t)g << 8) | ((uint32_t)b);
     }
 
-    if (animation_t.iteration == (num_leds*2))
-        animation_t.iteration = 0;
-    if(animation_t.iteration < num_leds)
-        leds[animation_t.iteration] = CHSV(hue++, 255, 255);
-    if(num_leds < animation_t.iteration && animation_t.iteration < (2*num_leds))
-        leds[2*num_leds - animation_t.iteration] = CHSV(hue++, 255, 255);
+    region = h / 43;
+    remainder = (h - (region * 43)) * 6; 
+
+    p = (v * (255 - s)) >> 8;
+    q = (v * (255 - ((s * remainder) >> 8))) >> 8;
+    t = (v * (255 - ((s * (255 - remainder)) >> 8))) >> 8;
+
+    switch (region)
+    {
+        case 0:
+            r = v; g = t; b = p;
+            break;
+        case 1:
+            r = q; g = v; b = p;
+            break;
+        case 2:
+            r = p; g = v; b = t;
+            break;
+        case 3:
+            r = p; g = q; b = v;
+            break;
+        case 4:
+            r = t; g = p; b = v;
+            break;
+        default:
+            r = v; g = p; b = q;
+            break;
+    }
+
+    return ((uint32_t)r << 16) | ((uint32_t)g << 8) | ((uint32_t)b);
 }
 
-static struct animation_config cylon_config = 
-{
-    .id = 0x43,
-    .leds_update = cylon,
-    .num = 0,
-};
+void scale(ledfx_color* color, const uint8_t scale){
+	color->r = ((uint16_t)color->r * (uint16_t)(scale) ) >> 8;
+    color->g = ((uint16_t)color->g * (uint16_t)(scale) ) >> 8;
+    color->b = ((uint16_t)color->b * (uint16_t)(scale) ) >> 8;
+}
 
+void cylon()
+{
+    static uint8_t hue = 0;
+    const uint16_t num_leds = animation_t.num_leds;
+    const uint16_t iteration = animation_t.iteration%(2*num_leds);
+
+    for(uint16_t i = 0; i < num_leds; i++) {
+		scale(&animation_t.leds[i], 250);
+    }
+
+    
+    if(iteration < num_leds)
+        ledfx_set_pixel(iteration, HsvToRgb(hue++, 255, 255));
+
+    if(num_leds < iteration && iteration < (2*num_leds))
+        ledfx_set_pixel(2*num_leds - iteration, HsvToRgb(hue++, 255, 255));
+}
 
 #endif // __CYLON_H__
