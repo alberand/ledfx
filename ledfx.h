@@ -15,7 +15,7 @@ struct ledfx_state {
     // strip configuration
     ledfx_color* leds;
     uint16_t num_leds;
-    uint16_t brightness;
+    uint8_t brightness;
 
     // current animation
     uint16_t iteration;
@@ -105,6 +105,7 @@ void ledfx_init(ledfx_color* leds, uint16_t num_leds){
     animation_t.leds = leds;
     animation_t.num_leds = num_leds;
     animation_t.iteration = 0;
+    animation_t.brightness = 255;
     ledfx_params_reset();
 }
 
@@ -120,7 +121,7 @@ void ledfx_set_pixel(const uint16_t id, const uint32_t color){
 	ledfx_set_pixel(id, ledfx_int_to_color(color));
 }
 
-void ledfx_set_brightness(const uint32_t brightness){
+void ledfx_set_brightness(const uint8_t brightness){
     animation_t.brightness = brightness;
 }
 
